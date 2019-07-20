@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圣杯布局</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{min-width: 700px;}
+        .header, .footer{
+            border: 1px solid #333;
+            background: #aaa;
+            text-align: center;
+        }
+        .left, .middle, .right{
+            position: relative;
+            float: left;
+            min-height: 130px;
+        }
+
+        .container{
+            /*2.左右栏通过添加负的margin放到正确的位置了，但是中间蓝的内容被遮盖了，所以此段代码是为了摆正中间栏的位置*/
+            padding:0 220px 0 200px;
+            overflow: hidden;
+        }
+        .left{
+            width: 200px;
+            background: red;
+            margin-left: -100%;
+            /*1.让左栏上去到和中间在一行，为啥呢，为啥会跑到上一行去呢*/
+/* 我知道咋回事了，左栏向左移动宽度整个100%，那当前宽度不够就会往上窜*/
+            left: -200px;
+            /*3.中间栏的位置摆正之后，左栏的位置也相应右移，通过相对定位的left恢复到正确位置*/
+        }
+        .right{
+            width: 220px;
+            background: green;
+            margin-left: -220px;
+            /*让右栏上去到和中间在一行，为啥呢，为啥会跑到上一行去呢*/
+ /*左栏上去了，那么右栏就会跑到第二行开始处，再向左220px，因为左面没有地方了，所以就向上一行中，从末尾处往左移220px*/
+            right: -220px;
+            /*中间栏的位置摆正之后，右栏的位置也相应左移，通过相对定位的right，相对于自己原来的位置恢复到正确位置*/
+        }
+        .middle{
+            width: 100%;/*中间栏占了百分之百，左右两栏就掉下去了*/
+            background: blue;
+            word-break: break-all;
+        }
+        .footer{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h4>header</h4>
+</div>
+<div class="container">
+    <div class="middle">
+        <h4>middle</h4>
+        <p>HHHHHHHHHHHHHHHHHHHHHH
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+            HHHHHHHHHHHHHHHHHHHHHH
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+        </p>
+    </div>
+    <div class="left">
+        <h4>left</h4>
+        <p>oooooooooooooo
+            0000000000000000
+            00000000000000000
+            ooooooooooooooo
+            ooooooooooooooo
+            000000000000000</p>
+    </div>
+    <div class="right">
+        <h4>right</h4>
+        <p>BBBBBBBBBBBBBB
+            888888888888888888
+            BBBBBBBBBBBBBBBBBB
+            88888888888888888888</p>
+    </div>
+</div>
+<div class="footer">
+    <h4>footer</h4>
+</div>
+</body>
+</html>

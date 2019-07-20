@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            color: #fff;
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            text-align: center;
+            line-height: 100px;
+            transition: width 1s;
+        }
+        /* .wrapper:hover {
+            width: 300px;
+        } */
+        .active {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="wrapper">蜗牛</div>
+    <script>
+        var test = document.getElementById('wrapper');/* document对象：代表整个HTML 文档，可用来访问页面中的所有元素，获取DOM元素 */
+        // console.log(test);
+        var isActive = false;
+        /* 监听点击事件 */
+        test.addEventListener('click',function(){
+            // test.style.width = '300px' ;/* 使用js修改css样式 */
+            isActive = !isActive
+            if(isActive == true) {
+                test.classList.add('active');/* 给test添加一个active的类名 */
+            }else {
+                test.classList.remove('active');/* 给test变量一处active类名 */
+            }
+        })
+    </script>
+</body>
+</html>

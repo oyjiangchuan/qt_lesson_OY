@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            list-style: none;
+            width: 50px;
+            height: 50px;
+            /* display: inline-block; */
+            /* flex: 1;/* 平分父容器主轴 */ 
+            flex: 0 0 200px;
+        }
+        .item:first-child{
+            background-color: red;
+        }
+        .item:nth-child(2) {
+            background-color: yellow;
+        }
+        .item:last-child {
+            background-color: blue;
+        }
+        .flex-item {
+            font-size: 0;   /* 把父容器中字体大小为零可以解决li中会有间隔的问题 */
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;/* 宽度不够时换行 */
+            align-content: center;
+           /*  flex-direction: column;/* 改变主轴的方向为Y轴 */ 
+           /* justify-content: center;
+           align-items: center; */
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <ul class="flex-item">
+            <li class="item">1</li>
+            <li class="item">2</li>
+            <li class="item">3</li>
+        </ul>
+    </div>
+</body>
+</html>

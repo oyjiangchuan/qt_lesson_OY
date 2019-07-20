@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>starwars</title>
+    <style>
+        /* css reset 重置页面样式，清空内外边距 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000;
+        }
+        img {
+            width: 100%;
+        }
+        .starwars-demo {
+            height: 17em;
+            width: 34em;
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%,-50%);/* 移动属性，属于css3.0,相当于用margin，这是专门的移动属性，前面代表X轴，后面代表y轴，50%相对于自身的一半 */
+            perspective: 800px;/* 定义眼睛离屏幕的距离为800像素 */
+            transform-style: preserve-3d;/* 支持3dz轴的变形样式 */
+        }
+        .star, .wars, .byline {
+            position: absolute;
+        }
+        .byline {
+            color: #fff;
+            font-family: Lato;
+            font-size: 2.25em;
+            left: -2em;
+            letter-spacing: 0.4em;/* 调整字体之间的间距 */
+            right: -2em;
+            top: 29%;
+            text-transform: uppercase;/* 所有的字母大写 */
+            animation: move-byline 10s linear/* 匀速渐变 */ infinite;
+        }
+        .byline span {
+            display: inline-block;
+            animation: span-letters 10s linear infinite;
+        }
+        @keyframes move-byline {
+            0% {
+                transform: translateZ(5em);
+            }
+            100% {
+                transform: translateZ(0);
+            }
+        }
+        @keyframes span-letters {
+            0%,100% {
+                opacity: 0;
+                transform: rotateY(90deg);/* 顺时针绕Y轴旋转90度 */
+            }
+            30% {
+                opacity: 1;
+
+            }
+            70%,80% {
+                transform: rotateY(0);
+                opacity: 1;
+            }
+            88%,100% {
+                opacity: 0;
+            }
+        }
+        .star {
+            top: -0.75em;
+            animation: shipmove 10s infinite/* 循环属性 */;/* 动作属性 */
+        }
+        @keyframes shipmove {/* 动作脚本 */
+            0% {
+                opacity: 0;/* 透明度 */
+                transform: scale(1.5);/* 原物体的1.5倍 */
+            }
+            20% {
+                opacity: 1;
+            }
+            89% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateZ(-400em);/* 元素在z轴上的移动 */
+            }
+        }
+        .wars {
+            bottom: -0.5em;
+            animation: shipmove 10s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="starwars-demo">
+            <img src="./images/star.svg" class="star">
+            <img src="./images/wars.svg" class="wars">
+        </div>    -->
+        <div class="starwars-demo">
+            <img src="./images/star.svg" alt="" class="star">
+            <img src="./images/wars.svg" alt="" class="wars">
+            <h2 class="byline">
+                <span>T</span>
+                <span>h</span>
+                <span>e</span>
+                <span>F</span>
+                <span>o</span>
+                <span>r</span>
+                <span>c</span>
+                <span>e</span>
+                <span>A</span>
+                <span>w</span>
+                <span>a</span>
+                <span>k</span>
+                <span>e</span>
+                <span>n</span>
+                <span>s</span>
+            </h2>
+        </div>
+        <!-- 中括号表示属性选择器 -->
+</body>
+</html>

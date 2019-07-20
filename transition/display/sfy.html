@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>双飞翼布局</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{min-width: 700px;}
+        .header,
+        .footer{
+            border: 1px solid #333;
+            background: #aaa;
+            text-align: center;
+        }
+        .sub,
+        .main,
+        .extra{
+            float: left;
+            min-height: 130px;
+        }
+        .sub{
+            margin-left: -100%;
+            /* 我知道咋回事了，左栏向左移动宽度整个100%，那当前宽度不够就会往上窜*/
+            width: 200px;
+            background: red;
+        }
+        .extra{
+            margin-left: -220px;
+            /*左栏上去了，那么右栏就会跑到第二行开始处，再向左220px，因为左面没有地方了，所以就向上一行中，从末尾处往左移220px*/
+            width: 220px;
+            background: blue;
+        }
+        .main{
+            width: 100%;
+        }
+        .main-inner{
+            margin-left: 200px;
+            margin-right: 220px;
+            /*和圣杯布局的区别middle的div里又插入一个div，通过调整内部div的margin值，实现中间栏自适应，内容写到内部div中。*/
+            min-height: 130px;
+            background: green;
+            word-break: break-all;
+        }
+        .footer{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h4>header</h4>
+</div>
+<div class="main">
+    <div class="main-inner">
+        <h4>main</h4>
+        <p>HHHHHHHHHHHHHHHHHHHHHH
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+            HHHHHHHHHHHHHHHHHHHHHH
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+        </p>
+    </div>
+</div>
+<div class="sub">
+    <h4>sub</h4>
+    <p>oooooooooooooo
+        00000000000000000
+        ooooooooooooooo
+        ooooooooooooooo
+        000000000000000</p>
+</div>
+
+<div class="extra">
+    <h4>extra</h4>
+    <p>BBBBBBBBBBBBBB
+        BBBBBBBBBBBBBBBBBB
+        88888888888888888888</p>
+</div>
+<div class="footer">
+    <h4>footer</h4>
+</div>
+</body>
+</html>

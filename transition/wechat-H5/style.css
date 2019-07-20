@@ -1,0 +1,150 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* 业务代码 ，注意在本例子中，宽度都是选用100%，符合了响应式编程的特性，复符合手机移动端的适用*/
+html,body {
+    width: 100%;
+}
+.main {
+    width: 100%;
+}
+.header {
+    text-align: center;
+    background-color: #eee;
+    padding: 10px 5px;
+}
+.search {
+    width: 100%;
+}
+.header p {
+    font-weight: 700;
+}
+.search input {
+    font-size: 14px;
+    color: #949496;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;/* 防止盒子撑开的方法 */
+    outline: none;/* 取消边框 */
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.content {
+    width: 100%;
+
+}
+.content-items {
+    width: 100%;
+}
+.content-item {
+    display: flex;
+    padding: 10px;
+    align-items: top;
+    overflow: hidden;
+}
+.left-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.left-pic img {
+    width: 100%;
+}
+
+.message {
+    flex: 1; /*弹性布局中，中间孩子设置flex=1,其他孩子没有设置，中间孩子默认占满剩余宽度 */
+    margin-left: 10px;
+    padding-top: 5px;
+    position: relative;
+}
+.message::after { /* 伪类的使用，不占据dom结构，是很好用的一种方式 */
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 1px;
+    background: #eee;
+    bottom: -10px;
+    left: 0;
+    
+}
+.name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.detail,.time {
+    font-size: 14px;
+    color: #555;
+}
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #eee;
+    border-top: 1px solid #aaa;
+}
+.ft-items {
+    width: 100%;
+    display: flex;
+}
+.item {
+    flex: 1;
+    text-align: center;
+    padding-bottom: 8px;
+}
+.item img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 8px auto;
+}
+.item-name {
+    font-size: 12px;
+    color: #555;
+    
+}
