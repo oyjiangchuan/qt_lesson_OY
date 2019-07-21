@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="./style.css">
     <title>猫眼</title>
 </head>
+
 <body>
     <header class="nav">
         <i class="arrow-left"></i>
@@ -46,25 +48,94 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="movie-detail">
+                            <div class="movie-type"></div>
+                            <div class="address-time">
+                                <span class="adress"></span>
+                                /
+                                <span class="time"></span>
+                                分钟
+                            </div>
+                            <p class="date"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="operating flex">
+                    <div class="movie-watch flex1" id="movie-watch">
+                        <img src="./images/heart.png" alt="">
+                        <span>想看</span>
+                    </div>
+                    <div class="movie-mark flex1">
+                        <img src="./images/star2.png" alt="">
+                        <span>评分</span>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- toast -->
+        <div id="toast">
+            <div class="weui-mask_transparent"></div>
+            <div class="weui-toast">
+                <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+                <p class="weui-toast__content">已标记为想看</p>
+            </div>
+        </div>
     </div>
     <script>
-        (function(){
+        (function () {
             $.ajax({
                 url: 'https://www.easy-mock.com/mock/5d2ed7d17f168b5e40d35f4b/movie/maoyanmoving',
                 type: 'get',
-                success: function(res) {
+                success: function (res) {
                     console.log(res)
-                    $('#moviePic').attr('src',res.data.moviePic) // jq中获取DOM结构,修改属性
+                    $('#moviePic').attr('src', res.data.moviePic) // jq中获取DOM结构,修改属性
                     $('.score-num span').html(res.data.people) // .html方法，修改html的内容
                     $('.movie-name span').html(res.data.name)
                     $('.movie-ename span').html(res.data.nameEnglish)
+                    $('.rating-score').html(res.data.grade)
+                    star(res.data.star)
+                    $('.movie-type').html(res.data.type)
+                    $('.adress').html(res.data.where)
+                    $('.time').html(res.data.time)
+                    $('.date').html(res.data.date)
                 }
             })
+
+            function star(e) {
+                let num = Math.floor(e);
+                let white = Math.floor(5 - e);
+                for (let i = 0; i < white; i++) {
+                    $('#rating').prepend('<img class="img" src="./images/star-2.png"></img>')
+                }
+                if (e > num) {
+                    $('#rating').prepend('<img class="img" src="./images/star-h.png"></img>')
+                }
+                for (let j = 0; j < num; j++) {
+                    $('#rating').prepend('<img class="img" src="./images/star.png"></img>')
+                }
+            }
         })()
+        /* var wh = document.getElementById('movie-watch');
+        var mo = document.getElementById('toast');
+        wh.addEventListener('click',function(){
+            mo.classList.add('active')
+        }) */
+        $('#movie-watch').click(function(){
+            if ($(this).hasClass('show')) {
+                $(this).removeClass('show')
+                $('#movie-watch img').attr('src','./images/heart.png')
+                $('#toast .weui-toast__content').html('已取消')
+            }else {
+                $('#movie-watch').addClass('show')
+                $('#movie-watch img').attr('src','./images/heart1.png')
+                $('#toast .weui-toast__content').html('已标记为想看')
+            }
+            $('#toast').addClass('active')
+            setTimeout(() => {
+                $('#toast').removeClass('active')
+            },2000)
+        })
     </script>
 </body>
+
 </html>
