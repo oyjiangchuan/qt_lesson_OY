@@ -80,6 +80,52 @@
                 <p class="weui-toast__content">已标记为想看</p>
             </div>
         </div>
+        <!-- section2 -->
+        <section class="section-seperate section-expender">
+            <div class="text-expander" id="text-expander">
+                <div class="text-expander__content close">
+                    <p></p>
+                </div>
+                <div class="text-expander__button">
+                    <i class="icon-chevron__down"></i>
+                </div>
+            </div>
+        </section>
+        <!-- section3 -->
+        <section class="section-seperate">
+            <p class="action-list section-title">演职人员</p>
+            <ul class="movie-celebrities">
+            </ul>
+        </section>
+        <!-- section4 -->
+        <section class="movie-booking section-seperate section-expender">
+            <p class="section-title">票房</p>
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <div class="placeholder">
+                        <span id="ranking"></span>
+                        <p>昨日票房排行</p>
+                    </div>
+                </div>
+                <div class="weui-flex__item">
+                    <div class="placeholder">
+                            <span id="bookingWeek"></span>
+                            <p>首周票房(万)</p>
+                    </div>
+                </div>
+                <div class="weui-flex__item">
+                    <div class="placeholder">
+                            <span id="bookingTotal"></span>
+                            <p>累计票房(万)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section5 -->
+        <section class="section-seperate">
+            <p class="action-list section-title">视频和剧照</p>
+            <ul class="movie-Stills"></ul>
+        </section>
     </div>
     <script>
         (function () {
@@ -98,14 +144,17 @@
                     $('.adress').html(res.data.where)
                     $('.time').html(res.data.time)
                     $('.date').html(res.data.date)
+                    $('.text-expander__content p').html(res.data.desc)
+                    celebrity(res.data.person)
+                    booking (res.data.booking)
+                    pictures (res.data.pictures)
                 }
             })
-
             function star(e) {
                 let num = Math.floor(e);
                 let white = Math.floor(5 - e);
                 for (let i = 0; i < white; i++) {
-                    $('#rating').prepend('<img class="img" src="./images/star-2.png"></img>')
+                    $('#rating').prepend('<img class="img" src="./images/star-2.png"></img>')  // 往#rating的div中添加图片.prepend方法
                 }
                 if (e > num) {
                     $('#rating').prepend('<img class="img" src="./images/star-h.png"></img>')
@@ -120,21 +169,69 @@
         wh.addEventListener('click',function(){
             mo.classList.add('active')
         }) */
-        $('#movie-watch').click(function(){
+        $('#movie-watch').click(function () {
             if ($(this).hasClass('show')) {
                 $(this).removeClass('show')
-                $('#movie-watch img').attr('src','./images/heart.png')
-                $('#toast .weui-toast__content').html('已取消')
-            }else {
+                $('#movie-watch img').attr('src', './images/heart.png') // 修改属性,两个参数,属性名，属性值,在原生js中使用的是setAttribute();
+                $('#toast .weui-toast__content').html('已取消') // 修改html中的内容,在原生js中使用的是innerHTML
+            } else {
                 $('#movie-watch').addClass('show')
-                $('#movie-watch img').attr('src','./images/heart1.png')
+                $('#movie-watch img').attr('src', './images/heart1.png')
                 $('#toast .weui-toast__content').html('已标记为想看')
             }
             $('#toast').addClass('active')
             setTimeout(() => {
                 $('#toast').removeClass('active')
-            },2000)
+            }, 2000)
         })
+
+        $('#text-expander').on('click', function () {
+            if ($('.text-expander__content').hasClass('close')) {
+                $('.icon-chevron__down').addClass('up')
+                $('.text-expander__content').removeClass('close')
+            } else {
+                $('.text-expander__content').addClass('close')
+                $('.icon-chevron__down').removeClass('up')
+            }
+        })
+
+        // 演员表
+        function celebrity(e) {
+            for (let n of e) {
+                $('.movie-celebrities').append(
+                    `<li>
+                        <a href="#" class="link">
+                            <div class="movie-celebrities__pic">
+                                <img src="${n.avatal}" alt="">
+                            </div>
+                            <span class="movie-celebrities-nick">${n.name}</span>
+                            <span class="movie-celebrities-roles">${n.sort}</span>
+                        </a>
+                    </li>`
+                )
+            }
+        }
+        // 票房
+        function booking (e) {
+            $('#ranking').html(e.ranking)
+            $('#bookingWeek').html(e.bookingWeek)
+            $('#bookingTotal').html(e.bookingTotal)
+        }
+
+        // 视频和剧照
+        function pictures (e) {
+            for (let n of e){
+                $('.movie-Stills').append(
+                    `<li>
+                        <a href="#" class="link">
+                            <div class="movie-Stills__pic">
+                                <img src="${n}" alt="">
+                            </div>
+                        </a>
+                    </li>`
+                )
+            }
+        }
     </script>
 </body>
 

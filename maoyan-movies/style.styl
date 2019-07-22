@@ -1,11 +1,20 @@
 $hdbg_color = #e54847
 $font_color_block = #fff
+$bd_color = #e5e5e5
 html,body
     width 100%
 .flex
     display flex
 .flex1
     flex 1
+.action-list,.section-title
+    font-size 15px
+    color #000
+.section-title
+    font-weight 600
+.action-list.section-title
+    padding-left 0.4rem
+    font-weight 600
 .nav
     height 1.067rem
     font-size 18px
@@ -41,7 +50,7 @@ html,body
     font 14px/1.5 Arial,Helvetica,sans-serif
     section
         background #fff
-        border-bottom 1px solid #e5e5e5
+        border-bottom 1px solid $bd_color
     .movie-header
         padding 0
         background #f8f8f8
@@ -145,7 +154,80 @@ html,body
                     img
                         width 18px
 
-
+    .section-seperate
+        padding-top 0.4rem
+        margin-bottom 0.3rem
+        border-top 1px solid $bd_color
+    .section-expender
+        padding-left 0.4rem
+        padding-right 0.4rem
+        .text-expander
+            &__content.close
+                min-height 65px
+                display -webkit-box
+                overflow hidden
+                text-overflow ellipsis
+                word-break break-all
+                -webkit-box-orient vertical
+                -webkit-line-clamp 3
+            &__button
+                height 0.7rem
+                text-align center
+                .icon-chevron__down
+                    display inline-block
+                    width 10px
+                    height 10px
+                    border 1px solid #aaa
+                    border-width 0 1px 1px 0
+                    transform rotateZ(45deg)
+                    box-sizing border-box
+                    transition transform .5S /* 监听transfrom,时间为0.5s */
+                .icon-chevron__down.up /* 给.icon-chevron__down再添加一个.p类名 */
+                    transform rotateZ(-135deg)
+    .section-seperate
+        .movie-celebrities,.movie-Stills
+            width 100%
+            padding .3rem .3rem .1rem .3rem
+            overflow-x scroll /* 在x轴超出给滚动条 */
+            white-space nowrap /* 不换行 */
+            box-sizing border-box
+            li
+                text-align center
+                display inline-block
+                padding 0.04rem
+                .link
+                    color #000
+                    .movie-celebrities__pic
+                        width 1.7334rem
+                        height 2.4rem
+                        margin 0.05rem
+                        img
+                            width 100%
+                    .movie-Stills__pic
+                        height 2rem
+                        margin 0.05rem
+                        img
+                            height 100%
+                    span
+                        display block
+                        font-size 0.2rem
+                        text-overflow ellipsis /* 文本超出显示点,和white-space nowrap不换行属性一起使用 */
+                        overflow hidden
+                        white-space nowrap
+                    .movie-celebrities-roles
+                        color #999
+        
+    .movie-booking
+        padding-bottom 0.2rem
+        .weui-flex
+            text-align center
+            .placeholder
+                span
+                    font-size 24px
+                    color #d96a3d
+                p
+                    color #bababa
+                    margin-top 0.1rem
 
 #toast
     display none

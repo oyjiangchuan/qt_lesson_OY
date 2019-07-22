@@ -8,6 +8,18 @@ body {
 .flex1 {
   flex: 1;
 }
+.action-list,
+.section-title {
+  font-size: 15px;
+  color: #000;
+}
+.section-title {
+  font-weight: 600;
+}
+.action-list.section-title {
+  padding-left: 0.4rem;
+  font-weight: 600;
+}
 .nav {
   height: 1.067rem;
   font-size: 18px;
@@ -174,6 +186,104 @@ body {
 }
 .page .movie-header .movie .operating .movie-mark img {
   width: 18px;
+}
+.page .section-seperate {
+  padding-top: 0.4rem;
+  margin-bottom: 0.3rem;
+  border-top: 1px solid #e5e5e5;
+}
+.page .section-expender {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+.page .section-expender .text-expander__content.close {
+  min-height: 65px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.page .section-expender .text-expander__button {
+  height: 0.7rem;
+  text-align: center;
+}
+.page .section-expender .text-expander__button .icon-chevron__down {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #aaa;
+  border-width: 0 1px 1px 0;
+  transform: rotateZ(45deg);
+  box-sizing: border-box;
+  transition: transform 0.5S /* 监听transfrom,时间为0.5s */;
+}
+.page .section-expender .text-expander__button .icon-chevron__down.up {
+  transform: rotateZ(-135deg);
+}
+.page .section-seperate .movie-celebrities,
+.page .section-seperate .movie-Stills {
+  width: 100%;
+  padding: 0.3rem 0.3rem 0.1rem 0.3rem;
+  overflow-x: scroll /* 在x轴超出给滚动条 */;
+  white-space: nowrap /* 不换行 */;
+  box-sizing: border-box;
+}
+.page .section-seperate .movie-celebrities li,
+.page .section-seperate .movie-Stills li {
+  text-align: center;
+  display: inline-block;
+  padding: 0.04rem;
+}
+.page .section-seperate .movie-celebrities li .link,
+.page .section-seperate .movie-Stills li .link {
+  color: #000;
+}
+.page .section-seperate .movie-celebrities li .link .movie-celebrities__pic,
+.page .section-seperate .movie-Stills li .link .movie-celebrities__pic {
+  width: 1.7334rem;
+  height: 2.4rem;
+  margin: 0.05rem;
+}
+.page .section-seperate .movie-celebrities li .link .movie-celebrities__pic img,
+.page .section-seperate .movie-Stills li .link .movie-celebrities__pic img {
+  width: 100%;
+}
+.page .section-seperate .movie-celebrities li .link .movie-Stills__pic,
+.page .section-seperate .movie-Stills li .link .movie-Stills__pic {
+  height: 2rem;
+  margin: 0.05rem;
+}
+.page .section-seperate .movie-celebrities li .link .movie-Stills__pic img,
+.page .section-seperate .movie-Stills li .link .movie-Stills__pic img {
+  height: 100%;
+}
+.page .section-seperate .movie-celebrities li .link span,
+.page .section-seperate .movie-Stills li .link span {
+  display: block;
+  font-size: 0.2rem;
+  text-overflow: ellipsis /* 文本超出显示点,和white-space nowrap不换行属性一起使用 */;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.page .section-seperate .movie-celebrities li .link .movie-celebrities-roles,
+.page .section-seperate .movie-Stills li .link .movie-celebrities-roles {
+  color: #999;
+}
+.page .movie-booking {
+  padding-bottom: 0.2rem;
+}
+.page .movie-booking .weui-flex {
+  text-align: center;
+}
+.page .movie-booking .weui-flex .placeholder span {
+  font-size: 24px;
+  color: #d96a3d;
+}
+.page .movie-booking .weui-flex .placeholder p {
+  color: #bababa;
+  margin-top: 0.1rem;
 }
 #toast {
   display: none;
