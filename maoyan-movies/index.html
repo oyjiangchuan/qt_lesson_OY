@@ -109,14 +109,14 @@
                 </div>
                 <div class="weui-flex__item">
                     <div class="placeholder">
-                            <span id="bookingWeek"></span>
-                            <p>首周票房(万)</p>
+                        <span id="bookingWeek"></span>
+                        <p>首周票房(万)</p>
                     </div>
                 </div>
                 <div class="weui-flex__item">
                     <div class="placeholder">
-                            <span id="bookingTotal"></span>
-                            <p>累计票房(万)</p>
+                        <span id="bookingTotal"></span>
+                        <p>累计票房(万)</p>
                     </div>
                 </div>
             </div>
@@ -125,6 +125,57 @@
         <section class="section-seperate">
             <p class="action-list section-title">视频和剧照</p>
             <ul class="movie-Stills"></ul>
+        </section>
+        <!-- section6 -->
+        <section class="section-seperate section-expender">
+            <p class="section-title pos_r">讨论
+                <span class="join-comment">参加讨论</span>
+            </p>
+            <ul class="movie-comment">
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>全部</span>
+                        <span class="comment-item__num"></span>
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>好评</span>
+                        <span class="comment-item__num">23323</span>
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>差评</span>
+                        <span class="comment-item__num">433443</span>
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>全部</span>
+                        <span class="comment-item__num"></span>
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>好评</span>
+                        <span class="comment-item__num">23323</span>
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>差评</span>
+                        <span class="comment-item__num">433443</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!-- section7 -->
+        <section class="section-seperate section-expender">
+            <p class="section-til">精选</p>
+            <ul class="chosen-comment" id="chosen-comment">
+
+            </ul>
         </section>
     </div>
     <script>
@@ -146,8 +197,9 @@
                     $('.date').html(res.data.date)
                     $('.text-expander__content p').html(res.data.desc)
                     celebrity(res.data.person)
-                    booking (res.data.booking)
-                    pictures (res.data.pictures)
+                    booking(res.data.booking)
+                    pictures(res.data.pictures)
+                    comment(res.data.comment)
                 }
             })
             function star(e) {
@@ -212,15 +264,14 @@
             }
         }
         // 票房
-        function booking (e) {
+        function booking(e) {
             $('#ranking').html(e.ranking)
             $('#bookingWeek').html(e.bookingWeek)
             $('#bookingTotal').html(e.bookingTotal)
         }
-
         // 视频和剧照
-        function pictures (e) {
-            for (let n of e){
+        function pictures(e) {
+            for (let n of e) {
                 $('.movie-Stills').append(
                     `<li>
                         <a href="#" class="link">
@@ -229,6 +280,30 @@
                             </div>
                         </a>
                     </li>`
+                )
+            }
+        }
+        // 精选和评论
+        function comment(e) {
+            for (let n of e) {
+                $('#chosen-comment').append(
+                    `<li class="chosen-comment__item">
+                    <div class="item-avatal">
+                        <img src="${n.avatal}" alt="">
+                    </div>
+                    <div class="item-detail">
+                        <div class="item-detail__hd">
+                            <div>
+                                <span class="nick-name">${n.nickName}</span>
+                                <span class="level">
+                                    <img src="${n.lever}" alt="">
+                                </span>
+                            </div>
+                            <p class="item-score__desc">给这部电影打了<span>${n.grade}</span>分</p>
+                            <p class="detail">${n.detail}</p>
+                        </div>
+                    </div>
+                </li>`
                 )
             }
         }

@@ -252,7 +252,7 @@ body {
 }
 .page .section-seperate .movie-celebrities li .link .movie-Stills__pic,
 .page .section-seperate .movie-Stills li .link .movie-Stills__pic {
-  height: 2rem;
+  height: 2.2rem;
   margin: 0.05rem;
 }
 .page .section-seperate .movie-celebrities li .link .movie-Stills__pic img,
@@ -284,6 +284,85 @@ body {
 .page .movie-booking .weui-flex .placeholder p {
   color: #bababa;
   margin-top: 0.1rem;
+}
+.page .pos_r {
+  position: relative;
+  box-sizing: border-box;
+}
+.page .pos_r .join-comment {
+  position: absolute;
+  font-size: 14px;
+  right: 0;
+  background: #e54847;
+  color: #fff;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+  border-radius: 20px;
+}
+.page .movie-comment {
+  padding: 0.2rem 0 0.2rem;
+}
+.page .movie-comment .comment-item {
+  display: inline-block;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-top: 0.2rem;
+  margin-right: 0.3rem;
+}
+.page .movie-comment .comment-item .comment-item__sort {
+  text-align: center;
+  padding: 0.1rem 0.25rem;
+  border-radius: 20px;
+  border: 1px solid #aaa;
+}
+.page .chosen-comment {
+  margin-top: 0.2rem;
+}
+.page .chosen-comment .chosen-comment__item {
+  display: flex;
+  margin-bottom: 0.3rem;
+}
+.page .chosen-comment .chosen-comment__item .item-avatal {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.page .chosen-comment .chosen-comment__item .item-avatal img {
+  width: 100%;
+}
+.page .chosen-comment .chosen-comment__item .item-detail {
+  flex: 1;
+  margin-left: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #ccc;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd {
+  font-size: 13px;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd div {
+  overflow: hidden;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd div .nick-name {
+  float: left;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd div .level {
+  float: left;
+  width: 0.9rem;
+  height: 0.45rem;
+  margin: 0 0.1rem;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd div .level img {
+  width: 100%;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd .item-score__desc {
+  color: #ccc;
+  font-size: 12px;
+  margin: 0.1rem 0 0.2rem 0;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd .detail {
+  font-size: 12px;
 }
 #toast {
   display: none;
