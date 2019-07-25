@@ -8,8 +8,9 @@
     <link href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
-    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script src="./flexible.js"></script>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./flexible.css">
     <title>猫眼</title>
 </head>
 
@@ -141,31 +142,37 @@
                 <li class="comment-item">
                     <div class="comment-item__sort">
                         <span>好评</span>
-                        <span class="comment-item__num">23323</span>
+                        <span class="comment-item__num">37743</span>
                     </div>
                 </li>
                 <li class="comment-item">
                     <div class="comment-item__sort">
                         <span>差评</span>
-                        <span class="comment-item__num">433443</span>
+                        <span class="comment-item__num">524</span>
                     </div>
                 </li>
                 <li class="comment-item">
                     <div class="comment-item__sort">
-                        <span>全部</span>
-                        <span class="comment-item__num"></span>
+                        <span>点映</span>
+                        <span class="comment-item__num">14303</span>
                     </div>
                 </li>
                 <li class="comment-item">
                     <div class="comment-item__sort">
-                        <span>好评</span>
-                        <span class="comment-item__num">23323</span>
+                        <span>购票</span>
+                        <span class="comment-item__num">39599</span>
                     </div>
                 </li>
                 <li class="comment-item">
                     <div class="comment-item__sort">
-                        <span>差评</span>
-                        <span class="comment-item__num">433443</span>
+                        <span>认证作者</span>
+                        <span class="comment-item__num">35</span>
+                    </div>
+                </li>
+                <li class="comment-item">
+                    <div class="comment-item__sort">
+                        <span>同城</span>
+                        <span class="comment-item__num">1111</span>
                     </div>
                 </li>
             </ul>
@@ -246,7 +253,8 @@
                 $('.icon-chevron__down').removeClass('up')
             }
         })
-
+        
+        
         // 演员表
         function celebrity(e) {
             for (let n of e) {
@@ -292,6 +300,15 @@
                         <img src="${n.avatal}" alt="">
                     </div>
                     <div class="item-detail">
+                        <span class="dian">...</span>
+                        <div class="farther" style="display: none;">
+                            <div class="one">
+                                <span class="fengxiang">分享</span>
+                                <span class="fenge"></span>
+                                <span>举报</span>
+                            </div>
+                            <span class="two"></span>
+                        </div>
                         <div class="item-detail__hd">
                             <div>
                                 <span class="nick-name">${n.nickName}</span>
@@ -306,7 +323,22 @@
                 </li>`
                 )
             }
+            $('.dian').click(function () {
+                if($(this).hasClass('show')) {
+                    $(this).removeClass('show')
+                    $('.farther').css('display', 'none');
+                } else{
+                    $(this).addClass('show')
+                    $('.farther').css('display', 'block');
+                }
+            
+            /* 首先这里需要记录一下重点,在函数外面监听点击事件的时候,选择的元素只能是当前HTML结构中已经存在的
+            如果想要遇到使用函数添加的HTML结构,需要将点击事件添加进添加HTML的函数中才可以实行监听 */
+        })
         }
+        
+        // 点击事件
+        
     </script>
 </body>
 

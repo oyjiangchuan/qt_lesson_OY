@@ -337,6 +337,16 @@ body {
   margin-left: 0.2rem;
   padding-bottom: 0.2rem;
   border-bottom: 1px solid #ccc;
+  position: relative;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .dian {
+  height: 0.6rem;
+  width: 0.4rem;
+  position: absolute;
+  right: 0;
+  top: 0.05rem;
+  font-size: 14px;
+  font-weight: 700;
 }
 .page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd {
   font-size: 13px;
@@ -356,6 +366,13 @@ body {
 .page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd div .level img {
   width: 100%;
 }
+.page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd div .onclick {
+  height: 0.45rem;
+  font-size: 14px;
+  color: #ccc;
+  float: right;
+  font-weight: 700;
+}
 .page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd .item-score__desc {
   color: #ccc;
   font-size: 12px;
@@ -363,6 +380,48 @@ body {
 }
 .page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd .detail {
   font-size: 12px;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .farther {
+  position: absolute;
+  top: 0;
+  right: 0.65rem;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .farther .one {
+  padding: 0.15rem;
+/* position absolute
+                        top 0
+                        right .4rem */
+  text-align: center;
+  border-radius: 2px;
+  background-color: #585b60;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .farther .one span {
+  font-size: 13px;
+  color: #fff;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .farther .one .fengxiang {
+  margin-right: 0.2rem;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .farther .one .fenge {
+  position: absolute;
+  top: 50%;
+  right: 48%;
+  transform: translate(-50%, -50%);
+  width: 0.01rem;
+  height: 0.5rem;
+  background-color: #fff;
+}
+.page .chosen-comment .chosen-comment__item .item-detail .farther .two {
+/* position absolute 
+                        top .28rem
+                        right .3rem */
+  position: absolute;
+  right: -4px;
+  top: 13px;
+  transform: rotate(45deg);
+  width: 0.2rem;
+  height: 0.2rem;
+  background-color: #585b60;
 }
 #toast {
   display: none;
