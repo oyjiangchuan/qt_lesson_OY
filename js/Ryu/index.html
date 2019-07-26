@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>街头霸王</title>
+</head>
+
+<body>
+    <button id="replay">播放录像</button>
+    <script>
+        let currentPlayer = null;
+        const Ryu = {
+            name: 'Ryu',
+            sex: '男',
+            attack: function () {
+                console.log('攻击');
+            },
+            defense: function () {
+                console.log('防御');
+            },
+            jump: function () {
+                console.log('跳跃');
+            },
+            crouch: function () {
+                console.log('蹲下');
+            }
+        }
+        const ChunLi = {
+            name: '春丽',
+            sex: '女',
+            attack: function () {
+                console.log(`${this.name}攻击`);
+            },
+            defense: function () {
+                console.log(`${this.name}防御`);
+            },
+            jump: function () {
+                console.log(`${this.name}跳跃`);
+            },
+            crouch: function () {
+                console.log(`${this.name}蹲下`);
+            }
+        }
+        const commands = {
+            "119": "jump", // W
+            "115": "crouch", // A
+            "97": "defense", // S
+            "100": "attack" // D
+        }
+        currentPlayer = ChunLi;
+        const commandStack = [];
+        document.onkeypress = function (ev) { // 按下键的时候
+            /* console.log(ev.keyCode); */
+            /* switch (ev.keyCode) { // ev.KeyCode 按下时的键盘的键值
+                case 119:
+                    Ryu.jump();
+                    break;
+                case 115:
+                    Ryu.crouch();
+                    break;
+                case 97:
+                    Ryu.defense();
+                    break;
+                case 110:
+                    Ryu.attack();
+                    break;
+            } */
+            // 可以一句代码执行 KeyCode对应的动作动起来
+
+            // 1. 抽象 {ev.keyCode: 动作} obj[key] obj.name obj['name']
+            // Ryu[commands[ev.KeyCode]](); 当传入的属性是一个变量的时候,用[]来访问
+            // console.log(commands[ev.keyCode]) jump crouch defense attack
+            let keyCode = ev.keyCode,
+                command = commands[ev.keyCode] ? makeCommand(currentPlayer, commands[ev.keyCode]) : null;
+            if (command) {
+                command();
+                commandStack.push(command);
+            }
+
+        }
+        // 封装
+        var makeCommand = function (reciver, state) {
+            return function () {
+                /* console.log(reciver[state]()) */
+                reciver[state]();
+            }
+        }
+        document.getElementById('replay').onclick = function () {
+            let command;
+            while (command = commandStack.shift()) {
+                command();
+            }
+        }
+    </script>
+</body>
+
+</html>
