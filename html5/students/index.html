@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Table DOM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            /* 占满父容器的宽度 */
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>是否单身</th>
+                    <th>家乡</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 数据显示到页面的工作
+        const students = [      // 声明一个常量的数组,其中每项都是一个对象
+            // 对象字面量
+            {
+                name: '刘磊',
+                hometown: '宜春',
+                single: true,
+                age: 22,
+                wife: null,
+                company: undefined,
+                hobbies: { // JSON Object
+                    game: ['LOL', 'MaJiang'], // arr object
+                    event: ['撩', '吃']
+                },
+                sing: function (song) {
+                    console.log(this.name + '来一首' + song.name)
+                }
+            }
+            , {
+                name: '欧阳江川',
+                single: false,
+                hometown: '九江',
+                age: 22
+            }, {
+                name: '严端银',
+                hometown: '鹰潭',
+                single: false, 
+                age: 22 
+            },
+            {
+                name: '杜发军',
+                hometown: '赣州',
+                single: false,
+                age: 22
+            },
+            {
+                name: '廖玉良',
+                hometown: '宜春',
+                single: true,
+                age: 22
+            }, {
+                name: '李吉勇',
+                hometown: '吉安',
+                single: true,
+                age: 22
+            }, {
+                name: '吴梦琪',
+                hometown: '南昌',
+                single: false,
+                age: 22
+            }
+        ];
+        // DOM操作
+        var tbody = document.querySelector('.table tbody');
+         // for(let student of students)
+         students.forEach((student, i) => {
+                tbody.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td>${student.name}</td>
+                    <td>${student.single?'是':'否'}</td>
+                    <td>${student.hometown}</td>
+                    <td>${student.age}</td>
+                </tr>` // 现在添加DOM结构就使用``括号,不要用之前的方法了,这里使用了forEach()方法
+         }) // 遍历
+        /* function input() {
+            for(let student of students){
+                tbody.innerHTML += `<tr>
+                    <td>1</td>
+                    <td>${student.name}</td>
+                    <td>${student.single?'是':'否'}</td>
+                    <td>${student.hometown}</td>
+                    <td>${student.age}</td>
+                </tr>` // 现在添加DOM结构就使用``括号,不要用之前的方法了
+            }
+        }
+        input(students); */
+    </script>
+</body>
+
+</html>

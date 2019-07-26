@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>juejin-posts-like-dislike</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <ul id="postLists">
+        <li>
+            <div class="content-box">
+                <div class="info-box">
+                    <div class="info-row tiao">1</div>
+                    <div class="info-row meta-row">海康威视技术团队</div>
+                    <div class="info-row title-row">你不知道的node.js</div>
+                    <div class="info-row action-row">999</div>
+                </div>
+                <div class="thumb"
+                    style="background-image: url('https://user-gold-cdn.xitu.io/2019/7/24/16c24b21d59234c9?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1'); background-size: cover;">
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <script>
+        // fetch    新的请求数据的api
+        // xmlhttpRequest  浏览器提供的原生的请求数据的api
+        // $.ajax() js库 封装了 xmlhttpRequest
+        // function res() {}
+        // const res = () => {}
+
+        // http://172.0.0.1:8080/posts.json
+        // 自己补充
+        // 当前这个 html 在哪个服务下 补充哪个
+        // 静态资源服务器 live-server 做了这个功能
+        // 静态资源:html css js img
+        // 静态资源服务器: 将磁盘上的文件路径 和 服务器路径 一一 映射
+        // baidu.com
+        // 磁盘 a b logo.jpg
+        // baidu.com/a/b/logo.jpg
+
+        fetch('/posts.json') // 链式调用的api
+            .then(res => {
+                return res.json(); // 转为json格式
+            })
+            .then(res => {
+                console.log('fetch->', res);
+                renderPosts(res);
+            })
+        // map和forEach的最大区别是map一定要有return
+        const postListsNode = document.getElementById('postLists');
+        function renderPosts(posts) {
+            let postsHTML = posts.map(function (post, i) {
+                return postListsNode.innerHTML += ` 
+                <li>
+                    <div class="content-box">
+                        <div class="info-box">
+                                <div class="info-row tiao">${i + 2}</div>
+                            <div class="info-row meta-row">${post.author}</div>
+                            <div class="info-row title-row">${post.postName}</div>
+                            <div class="info-row action-row">${post.likeCount}</div>
+                        </div>
+                        <div class="thumb" style="background-image: url('https://user-gold-cdn.xitu.io/2019/7/24/16c24b21d59234c9?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1'); background-size: cover;">
+                        </div>
+                    </div>
+                </li>`
+            })
+            /* postsHTML = postsHTML.join(''); // 将数组拼接为字符串的方法 */
+
+            /* postListsNode.innerHTML = postListsNode.innerHTML + postsHTML; */
+        }
+    </script>
+</body>
+
+</html>

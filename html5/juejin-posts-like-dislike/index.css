@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 12px;
+}
+li {
+    list-style: noe;
+    border-bottom: 1px solid rgba(178,186,194,.15);
+}
+.content-box {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+.info-box {
+    flex: 1; /* 除了另外一个盒子,将其余空间占满 */
+    /* flex-grow */
+}
+.thumb {
+    width: 5rem;
+    height: 5rem;
+    margin-left: 2rem;
+    background-color: #fff;
+    border-radius: 2px;
+}
