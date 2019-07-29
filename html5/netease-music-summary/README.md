@@ -13,5 +13,37 @@ transform: scale(.3);
 transform-origin: top right; /* 改变压缩基点为右上角 */ 
 压缩容器的宽高大小
 
-animation: ani_qiuqian 6s ease-in-out infinite;
-transform-origin: -16% -29%;/* 改变旋转基点 */
+animation: ani_qiuqian 6s ease-in-out infinite; 动画名 动画时间 动画的类型 如两头慢中间快 循环
+添加完动画属性之后,一般要写动画的脚本如下:
+@keyframes ani_qiuqian {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+transform-origin: -16% -29%;/* 改变旋转基点 旋转基点默认是中间点 */
+
+//xxx.png
+自己补全
+http  http:
+https https:
+
+position 脱离文档流
+动画就是 css 属性的改变
+当一个 css 属性改变了 浏览器将其绘制在页面上  同时也会影响其他元素
+让其他元素少受到该元素的影响
+
+letter-spacing: 1px; /* 字间距 */
+transition: opacity 1.2s,transform 1s; /* 过渡可以根据属性的变化调整属性变化所花的时间 */
+
+animation: juanAnimation 5s steps(1) reverse,/* steps(1)不匀速,分一步,数字是多少就分几步完成,直接跳到下一个动画位置; reverse 表示倒着播放默认是从第一帧动画开始*/
+    juanAnimation 5s steps(1) 6s forwards; /* 6s表示延时 forwards 表示停在最后一帧动画 默认是会回到最初位置的 */
+    动画属性之间可以用逗号隔开,同时设置多个动画效果,还可以同名
+    
+transition-delay: 0.2s; 在过渡效果开始前等待 .2 秒,和animation中的delay属性相似,在动画效果开始前等待的时间长短
