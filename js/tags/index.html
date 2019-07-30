@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="info-list">
+        <li><a href="javascript:;" class="info" data-id="1">获取信息</a></li>
+        <li><a href="javascript:;" class="info" data-id="2">获取信息</a></li>
+        <li><a href="javascript:;" class="info" data-id="3">获取信息</a></li>
+    </ul>
+    <div class="userinfo"></div>
+    <a href="javascript:;" id="info_a">Get Student Info</a>
+
+    <script>
+        const getStudentInfo = (event) => {
+            // console.log(event.target.tagName); 
+            // console.log(this === event.target) 此时的this指向event.target
+            // console.log(this); 在箭头函数中的this指向上一级,这里指向windows对象
+        }
+        const infoA = document.querySelector('#info_a');
+
+        infoA.addEventListener('click', getStudentInfo, false);
+        const infos = document.querySelectorAll('.info');
+        // 遍历数组(一)
+        /* for (let i = 0; i < infos.length; i++)
+            infos[i].addEventListener('click', (event) => {
+                const id = event.target.dataset.id;
+                fetchStudentInfoById(id);
+            }) */
+
+        // 高阶函数,该函数的参数也是一个函数 [].forEach(fn)
+        // 遍历数组(二)
+        /* infos.forEach((info, index)=> {
+            console.log(info, index)
+           /*  info.addEventListener('click', (event) => {
+                console.log(event.target.dataset.id)
+        } }) */
+
+
+        const renderSudent = (student) => {
+            document.querySelector('.userinfo').innerHTML += `
+            <p>学号:${student.id} - 姓名:${student.username}</p>`
+        }
+        const fetchStudentInfoById = (id) => {
+            // console.log(id)
+            // 此时拿到的数据是可读流数据, 可写流
+            fetch('/data.json')
+                .then(data => data.json()) // 从可读流的数据转化为json格式的数据
+                .then(data => {
+                    // console.log(data)
+                    let info = (data.students.filter((student) => {return student.id == id})[0])
+                    console.log(info)
+                    renderSudent(info)
+                    // student => student.id == id
+                })
+        }
+        // 遍历数组(三)
+        /* for(let info of infos) {
+            info.addEventListener('click', (event)=> {
+                const id = event.target.dataset.id;
+                const studentInfo = fetchStudentInfoById(id);
+
+            })
+        } */
+        document.querySelector('.info-list').addEventListener('click', function (event) {
+            console.log(event.target, this)  //event.target事件的源头,this这里指向监听的事件
+            const id = event.target.dataset.id;
+            const studentInfo = fetchStudentInfoById(id);
+        })
+    </script>
+</body>
+
+</html>
