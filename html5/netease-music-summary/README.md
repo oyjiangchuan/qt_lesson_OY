@@ -47,3 +47,18 @@ animation: juanAnimation 5s steps(1) reverse,/* steps(1)不匀速,分一步,数�
     动画属性之间可以用逗号隔开,同时设置多个动画效果,还可以同名
     
 transition-delay: 0.2s; 在过渡效果开始前等待 .2 秒,和animation中的delay属性相似,在动画效果开始前等待的时间长短
+
+filter: blur(10px); 蒙层效果即模糊效果,一般配合动画的属性一起使用.
+transition属性一般配合事件使用,当另一个事件发生时,改变transition属性中的值;一般和Js一起使用或则和鼠标悬停时发生事件
+如:.para {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 2s, transform 2s;
+    }
+    .paras:hover .para {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    在.para中定义transition属性
+    在.paras:hover .para 中显示改变的值
+    就会达到一种animation的效果
