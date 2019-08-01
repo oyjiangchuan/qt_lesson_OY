@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <li>1</li>
+    </div>
+    <script>
+        var box = document.getElementById('box');
+        console.log(box.firstChild.nodeType); // 选中所有节点
+        console.log(box.firstElementChild.nodeType); // 只选择元素节点,不会选择文本节点
+        const liNode = document.createElement('li');
+        const text = document.createTextNode('0')
+        liNode.appendChild(text);
+        box.insertBefore(liNode,box.firstElementChild); // 在已有的子节点前插入一个新的子节点。
+        // 1: 通过remove()
+        
+        var lis = document.querySelectorAll('#box li') // 这里使用querySelector()不可以选中全部
+        for (let i = 0; i < lis.length; i++){
+            console.log(lis[i]);
+            lis[i].addEventListener('click', () => {
+                // lis[i].remove(); 1: 通过自身移除remove()
+                box.removeChild(lis[i]); // 通过父节点移除removeChild()
+            })
+        }
+
+    </script>
+</body>
+</html>

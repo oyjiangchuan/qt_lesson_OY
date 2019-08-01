@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>get/set方法</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="red" id="red" data-index='1'> <!-- data-index='1' h5中新增的自定义属性 -->
+        box
+    </div>
+
+    <script>
+        var box = document.querySelector('.red')
+        var className = box.getAttribute('class');
+        console.log(className);
+        box.setAttribute('class', 'blue');
+        console.log(box.dataset.index) // dataset.自定义属性名可以访问h5中的自定义属性
+        console.log('all names', box.getAttributeNames()) // .getAttributeNames()得到所有属性名
+    </script>
+</body>
+</html>
