@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fly-bird</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <!-- 游戏背景 -->
+    <div id="wrapbg">
+        <!-- 开始标题 -->
+        <div class="headTitle" id="headTitle">
+            <img src="./img/bird0.png" alt="" id="headBird">
+        </div>
+        <!-- 开始按钮 -->
+        <div id="startBtn"></div>
+        <!-- 草地1 -->
+        <div id="grassLand1"></div>
+        <!-- 草地2 -->
+        <div id="grassLand2"></div>
+        <!-- 分数 -->
+        <div id="score">
+            <div id="num1"></div>
+            <div id="num2"></div>
+            <div id="num3"></div>
+        </div>
+        <!-- 游戏结束 -->
+        <div id="gameOver">
+            <img src="img/game_over.jpg" alt="game over" />
+            <img src="img/message.jpg" alt="message" />
+            <img id="ok" src="img/ok.jpg" alt="ok" />
+        </div>
+    </div>
+    <script src="./js/bird.js"></script>
+    <script src="./js/baseObj.js"></script>
+    <script src="./js/block.js"></script>
+    <script>
+        var jsWrapBg = document.getElementById('wrapbg'),
+            jsHeadTitle = document.getElementById('headTitle'),
+            jsHeadBird = document.getElementById('headBird'),
+            jsGrassLand1 = document.getElementById('grassLand1'),
+            jsGrassLand2 = document.getElementById('grassLand2'),
+            blocksArr = [], // 用来存储block的数据
+            blockDistance = baseObj.remdomNum(120, 350),
+
+            JSScore = document.getElementById('score')
+            JSNum1 = document.getElementById('num1'),
+            JSNum2 = document.getElementById('num2'),
+            JSNum3 = document.getElementById('num3'),
+            score = 0,
+
+            JSGameOver = document.getElementById('gameOver'),
+            JSGameReset = document.getElementById('ok');
+
+        // 让草地动起来
+        var landTimer = setInterval(landRun, 30)
+        function landRun() {
+            if (jsGrassLand1.offsetLeft <= -343) {
+                jsGrassLand1.style.left = '343px'
+            }
+            if (jsGrassLand2.offsetLeft <= -343) {
+                jsGrassLand2.style.left = '343px'
+            }
+            jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 +'px';
+            jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 +'px';
+
+            if (blocksArr.length) {
+                for (var i = 0; i < blocksArr.length; i++) {
+                    blocksArr[i].moveBlock()
+                    var x = baseObj.rectangleCrashExamine(blocksArr[i].downDivWrap, bird.div)
+                    var y = baseObj.rectangleCrashExamine(blocksArr[i].upDivWrap, bird.div)
+                    var z = bird.div.offsetTop >= 390
+                    if (x || y || z) {
+                        window.clearInterval(landTimer) //清除landTimer定时器
+                        bird.fallSpeed = 0 //小鸟下落
+                        jsWrapBg.onclick = null //消除点击事件
+                        JSGameOver.style.display = 'block'
+                    }
+                }
+
+                if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (450 -blockDistance)) {
+                    blockDistance = baseObj.remdomNum(130, 250)
+                    var newBlock = new Block()
+                    newBlock.createBlock()
+                    blocksArr.push(newBlock)
+                }
+
+                if (blocksArr[0].downDivWrap.offsetLeft == -12) {
+                    score++; // 积分面板
+                    if (score < 10) {
+                        JSNum1.style.backgroundImage = "url(img/" + score + ".jpg)"
+                    } else if (score < 100) {
+                        JSNum2.style.display = 'block'
+                        JSNum1.style.backgroundImage = "url(img/" + parseInt(score/10) + ".jpg)"
+                        JSNum2.style.backgroundImage = "url(img/" + parseInt(score%10) + ".jpg)"
+                    } else if (score < 1000) {
+                        JSNum3.style.display = 'block';
+                        JSNum1.style.backgroundImage = "url(img/" + parseInt(score/100) + ".jpg)"
+                        JSNum2.style.backgroundImage = "url(img/" + parseInt(score/10)%10 + ".jpg)"
+                        JSNum3.style.backgroundImage = "url(img/" + parseInt(score%10) + ".jpg)"
+                    }
+                }
+
+                if (blocksArr[0].downDivWrap.offsetLeft < -62) { // 移除柱子和数组中的第一项
+                    jsWrapBg.removeChild(blocksArr[0].upDivWrap)
+                    jsWrapBg.removeChild(blocksArr[0].downDivWrap)
+                    blocksArr.shift(blocksArr[0]);
+                }
+            }
+        }
+        // 标题摆动
+        var Y = 3,
+            index = 0,
+            imgArr = ['img/bird0.png', 'img/bird1.png']
+        // 利用帧动画的原理做出小鸟摆动翅膀的样子
+        var headWaveTimer = setInterval(headWave, 200)
+        function headWave() {
+            Y *= -1; // Y = Y * -1;
+            jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y +'px';
+            jsHeadBird.src = imgArr[index++]
+            if (index == 2) {
+                index = 0
+            }
+        }
+        
+        var jsStartBtn = document.getElementById('startBtn')
+        jsStartBtn.onclick = function() {
+            jsHeadTitle.style.display = 'none' // 隐藏标题
+            clearInterval(headWaveTimer)
+            jsStartBtn.style.display = 'none' // 隐藏按钮
+            bird.showBird(jsWrapBg) // 插入小鸟到页面中
+            bird.flyBird() // 控制小鸟飞翔下落
+            bird.wingWave() // 逐帧动画, 小鸟煽动翅膀
+            jsWrapBg.onclick = function() {
+                bird.fallSpeed = -5
+            }
+            // 开始出现管道
+            var b = new Block()
+            b.createBlock()
+            blocksArr.push(b)
+            // 显示分数
+            JSNum1.style.display = 'block' 
+        }
+
+        // 点击Ok部分重置页面
+        JSGameReset.onclick = function() {
+            window.location.href = 'index.html' // 刷新页面
+        }
+    </script>
+</body>
+
+</html>
