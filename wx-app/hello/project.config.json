@@ -9,13 +9,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false,
-		"coverView": true
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
-	"appid": "wx6734185fae5cfa2f",
-	"projectname": "hello",
+	"libVersion": "2.7.4",
+	"appid": "wx4f0e9a587bcff932",
+	"projectname": "wxApp",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
