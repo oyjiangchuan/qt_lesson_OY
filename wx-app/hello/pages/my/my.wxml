@@ -17,8 +17,38 @@
   <swiper indicator-dots circular interval="3000" indicator-active-color="red" autoplay duration="1000">
     <block wx:for="{{imgUrls}}" wx:key="index">
       <swiper-item>
-        <image src="{{item}}" class="slide-image"/>
+        <image src="{{item}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
+  <!-- 电影列表 -->
+  <view class="movie-lists" wx:for="{{items}}" wx:key="{{index}}"> <!-- 这里使用的微信小程序的for循环 使用key=每一项下标可以很轻松的添加页面结构 -->
+    <view class="flex item">
+      <view class="item_left">
+        <image src="{{item.imgUrl}}">
+        </image>
+      </view>
+      <view class="item_middle">
+        <view class="flex_auto">
+          <text class="title">{{item.name}}</text>
+        </view>
+        <view>
+          <view class="item_grade">
+            <text class="score" wx:if="{{item.isShow == 0}}">{{item.wantSee}}<text style="font-size: 12px">人想看</text></text>
+            <text class="score" wx:else>{{item.grade}}<text style="font-size: 12px">分</text>
+            </text>
+          </view>
+        </view>
+        <view>
+          <text class="actor font-desc">主演:{{item.actor}}</text>
+        </view>
+        <view>
+          <text class="desc font-desc">今天{{item.showInfo.cinema}}家影院放映{{item.showInfo.times}}场</text>
+        </view>
+      </view>
+      <view class="item_right">
+        <text class="buy" style="background-color:{{item.isShow == 0 ? '#52b0eb' : '#ef4238'}}">{{item.isShow == 0 ? '预售' : '购票'}}</text>
+      </view>
+    </view>
+  </view>
 </view>

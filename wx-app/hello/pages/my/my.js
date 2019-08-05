@@ -10,14 +10,25 @@ Page({
       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
       'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
-    ]
+    ],
+    items: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onload......')
+    // console.log('onload......')
+    let that = this;
+    wx.request({
+      url: 'https://www.easy-mock.com/mock/5d47cdd34e68975d3395ed6b/example/new-movies-list',
+      success: function(res) {
+        // console.log(res)
+        that.setData({
+          items: res.data.data.movieList
+        })
+      }
+    })
   },
 
   /**
@@ -25,6 +36,7 @@ Page({
    */
   onReady: function () {
     console.log('onReady......')
+
   },
 
   /**
