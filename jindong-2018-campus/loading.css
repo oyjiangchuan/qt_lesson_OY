@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 37.5px;
+}
+.loading {
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    overflow: hidden;
+}
+.c-cube-1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -2.13rem;
+    margin-left: -.5rem;
+    animation: downAni 1.8s ease-in-out infinite alternate; 
+}
+@keyframes downAni {
+    0% {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-40px)
+    }
+}
+.c-cube {
+    transform-style: preserve-3d;
+    transform: rotateX(-33.5deg) rotateY(45deg);
+    transform-origin: .5em .5em;
+    animation: rightAni 1.2s linear infinite;
+}
+@keyframes rightAni {
+    0% {
+        transform: rotateX(-33.5deg) rotateY(45deg);
+    }
+    to {
+        transform: rotateX(-33.5deg) rotateY(225deg);
+    }
+}
+.c-cube__side--front {
+    transform: translateZ(.5em);
+}
+.c-cube__side--back {
+    transform: translateZ(-.5em)
+}
+.c-cube__side--left {
+    transform: rotateY(-90deg) translateZ(.5em);
+}
+.c-cube__side--right {
+    transform: rotateY(90deg) translateZ(.5em);
+}
+.c-cube__side--top {
+    border: 1px solid #ff1224;
+    transform: rotateX(90deg) translateZ(.5em);
+}
+.c-cube__side {
+    position: absolute;
+    height: 1em;
+    width: 1em;
+}
+.c-cube__side--left,
+.c-cube__side--right,
+.c-cube__side--back,
+.c-cube__side--front {
+    height: 5em;
+    border: 1px solid;
+    border-top: none;
+    border-bottom: none;
+    border-image: linear-gradient(#ff1224, rgba(255, 18, 36, 0)) 2; /* 边框可以用图片设置 */
+}
+
+.loading .line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1.33333rem;
+    background: linear-gradient(-180deg,#ff1224,rgba(255,18,36,0));
+    animation: speed-line-anim 1.2s linear infinite;
+}
+@keyframes speed-line-anim {
+    0% {
+        opacity: 0;
+        transform: translateZ(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(40%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(200%);
+    }
+}
+.loading .line-1 {
+    margin-top: -2.4rem;
+    margin-left: -1.33333rem;
+    animation-delay: .2s;
+    animation-duration: 1.5s;
+}
+.loading .line-2 {
+    margin-left: -.8rem;
+    margin-top: -2.13333rem;
+    animation-delay: .1s;
+    animation-duration: 1s;
+}
+.loading .line-3 {
+    margin-left: .4rem;
+    margin-top: -1.86667rem;
+    animation-delay: .6s;
+    animation-duration: 1.4s;
+}
+.loading .line-4 {
+    margin-left: 1.06667rem;
+    margin-top: -2.4rem;
+    animation-delay: .8s;
+}
