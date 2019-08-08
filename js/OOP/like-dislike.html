@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .read {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <button id="btn">999</button>
+        <button id="btn">999</button>
+        <button id="btn">999</button>
+        <button id="btn">999</button>
+    </ul>
+    <script>
+        // 这个按钮所有属性都是确定的 
+        // 如果要添加多个按钮,就不好实现功能了(可以添加相同类名,用document.querySelectorAll()选中所有的类名,循环绑定该数组实现每个按钮的点击)
+        // 这里可以使用面向对象的思路
+        var btnNode = document.querySelectorAll('#btn')
+        let status = false;
+        // for循环绑定事件方法1,使用立即执行函数
+        // for (var i = 0; i < btnNode.length; i++) {
+        //     (function (i) {
+        //         btnNode[i].addEventListener('click', () => {
+        //             if (!status) {
+        //                 btnNode[i].innerText = parseInt(btnNode[i].innerText) + 1;
+        //                 btnNode[i].classList.add('read')
+        //                 status = !status;
+        //             } else {
+        //                 btnNode[i].innerText = parseInt(btnNode[i].innerText) - 1;
+        //                 btnNode[i].classList.remove('read')
+        //                 status = !status;
+        //             }
+        //         })
+        //     })(i);
+        // }
+
+        // for循环绑定事件方法2,使用let定义变量
+        for (let i = 0; i < btnNode.length; i++) {
+            btnNode[i].addEventListener('click', () => {
+                if (!status) {
+                    btnNode[i].innerText = parseInt(btnNode[i].innerText) + 1;
+                    btnNode[i].classList.add('read')
+                    status = !status;
+                } else {
+                    btnNode[i].innerText = parseInt(btnNode[i].innerText) - 1;
+                    btnNode[i].classList.remove('read')
+                    status = !status;
+                }
+            })
+        }
+
+
+
+        // btnNode.addEventListener('click', () => {
+        //     if (!status) {
+        //         btnNode.innerText = parseInt(btnNode.innerText) + 1;
+        //         btnNode.classList.add('read')
+        //         status = !status;
+        //     } else {
+        //         btnNode.innerText = parseInt(btnNode.innerText) - 1;
+        //         btnNode.classList.remove('read')
+        //         status = !status;
+        //     }
+        // })
+
+        // OOP思路
+        // function LikeDisLikeBtn(defaultCount, status) {
+        //     this.defaultCount = defaultCount;
+        //     this.status = status;
+        //     this.initDom();
+        // }
+        // LikeDisLikeBtn.prototype.initDom = function() {
+        //     this.btnNode = document.createElement('button');
+        //     var textNode = document.createTextNode(this.defaultCount)
+        //     this.btnNode.appendChild(textNode);
+        //     if (this.status) {
+        //         this.btnNode.classList.add('read');
+        //     }
+        //     this.initEvnet();
+        // }
+        // LikeDisLikeBtn.prototype.initEvnet = function() {
+        //     this.btnNode.addEventListener('click', () => {
+        //         if (!this.status) {
+        //         this.btnNode.innerText = parseInt(this.btnNode.innerText) + 1;
+        //         this.btnNode.classList.add('read')
+        //         this.status = !this.status;
+        //     } else {
+        //         this.btnNode.innerText = parseInt(this.btnNode.innerText) - 1;
+        //         this.btnNode.classList.remove('read')
+        //         this.status = !this.status;
+        //     }
+        //     })
+        // }
+        // var btn = new LikeDisLikeBtn(999, false);
+        // for (let i = 0; i < 10; i++) {
+        //     let btn = new LikeDisLikeBtn(999, false)
+        //     let ul = document.querySelectorAll('ul')
+        //     ul[0].appendChild(btn.btnNode)
+        // }
+        // btn: { status: , defaultCount: , btnNode: }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 人
+        var obj = new Object;
+        obj.name = '李雷';
+        obj.age = 18;
+        function createPerson(name, age) {
+            // 1
+            var t = new Object();
+            t.name = name;
+            t.age = age;
+            // 2
+            return t;
+        }
+        // 构造函数方法
+        function Person(name, age, hobby) {
+            this.name = name;
+            this.age = age;
+            this.hobby = hobby;
+            this.say = function() {
+                console.log('hooby:', this.hobby)
+            }
+        }
+        // new 创建一个实例
+        var p1 = new Person('李雷', 20, [])
+        p1.say();
+        // p1.hobby === this.hobby
+        // console.log(p1)
+        function Foo() {
+            this.a = 1;
+            // return 2; 如果不是对象,按new的对象返回
+            return {  //如果构造函数中有返回,且该值是一个对象,就会返回该对象，而不返回创建的对象
+                b:2,
+                c:3
+            }
+        }
+        var f = new Foo();
+
+    </script>
+</body>
+</html>
