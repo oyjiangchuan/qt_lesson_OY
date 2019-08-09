@@ -340,13 +340,15 @@ body {
   position: relative;
 }
 .page .chosen-comment .chosen-comment__item .item-detail .dian {
+  cursor: pointer;
   height: 0.6rem;
-  width: 0.4rem;
+  width: 0.6rem;
   position: absolute;
   right: 0;
   top: 0.05rem;
   font-size: 14px;
   font-weight: 700;
+  text-align: center;
 }
 .page .chosen-comment .chosen-comment__item .item-detail .item-detail__hd {
   font-size: 13px;

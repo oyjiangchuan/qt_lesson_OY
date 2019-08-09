@@ -253,8 +253,8 @@
                 $('.icon-chevron__down').removeClass('up')
             }
         })
-        
-        
+
+
         // 演员表
         function celebrity(e) {
             for (let n of e) {
@@ -323,22 +323,33 @@
                 </li>`
                 )
             }
-            $('.dian').click(function () {
-                if($(this).hasClass('show')) {
-                    $(this).removeClass('show')
-                    $('.farther').css('display', 'none');
-                } else{
-                    $(this).addClass('show')
-                    $('.farther').css('display', 'block');
-                }
-            
-            /* 首先这里需要记录一下重点,在函数外面监听点击事件的时候,选择的元素只能是当前HTML结构中已经存在的
-            如果想要遇到使用函数添加的HTML结构,需要将点击事件添加进添加HTML的函数中才可以实行监听 */
-        })
+            var dian = document.querySelectorAll('.dian')
+            var show = document.querySelectorAll('.farther')
+            for (let i = 0; i < dian.length; i++) {
+                dian[i].addEventListener('click', function() {
+                    if (this.classList.contains('show')) {
+                        this.classList.remove('show')
+                        show[i].style.display = 'none'
+                    } else {
+                        this.classList.add('show')
+                        show[i].style.display = 'block'
+                    }
+                })
+            }
+            // $('.dian').click(function () {
+            //     if ($(this).hasClass('show')) {
+            //         $(this).removeClass('show')
+            //         $('.farther').css('display', 'none');
+            //     } else {
+            //         $(this).addClass('show')
+            //         $('.farther').css('display', 'block');
+            //     }
+
+            //     /* 首先这里需要记录一下重点,在函数外面监听点击事件的时候,选择的元素只能是当前HTML结构中已经存在的
+            //     如果想要遇到使用函数添加的HTML结构,需要将点击事件添加进添加HTML的函数中才可以实行监听 */
+            // })
         }
-        
         // 点击事件
-        
     </script>
 </body>
 
