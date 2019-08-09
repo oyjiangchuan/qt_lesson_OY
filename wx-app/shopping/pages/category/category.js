@@ -34,7 +34,7 @@ Page({
     wx.request({
       url: 'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
       success(res) {
-        console.log(res)
+        // console.log(res)
         self.setData({
           detail: res.data
         })
