@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body,html {
+    font-size: 37.5px;
+    width: 100%;
+    height: 100%;
+    font-family: FZLTZCHK,-apple-system,Helvetica,Microsoft YaHei,Arial,sans-serif;
+}
+.mian {
+    background-color: #ff1224;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.logo-ran {
+    width: 1.90667rem;
+    height: 1.73333rem;
+    margin-top: 1.6rem;
+    background-size: 14.56rem 4.64rem;
+    background-image: url(https://wqs.jd.com/promote/201707/2018campus/img/sprite.other_5adc1e.png);
+    background-position: -3.02667rem 0;
+    animation: dong .5s .4s both;
+}
+@keyframes dong {
+    0% {
+        opacity: 0;
+        transform: translateX(50%)
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+.text-slogon {
+    width: 5.73333rem;
+    height: 1.97333rem;
+    background-image: url(https://wqs.jd.com/promote/201707/2018campus/img/sprite.text_2b7b0a.png);
+    background-position: -31.73333rem 0;
+    margin-top: 5.65333rem;
+    background-size: 51.58667rem 2.44rem;
+    animation: dong .5s .5s both;
+}
+
+.logo-ran, .text-slogon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: -133.32rem;
+    margin-left: .85333rem;
+}
+
+.text-detail, .text-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: .85333rem;
+    color: #fff;
+    font-family: FZLTZCHK,-apple-system,Helvetica,Microsoft YaHei,Arial,sans-serif;
+}
+
+.text-title {
+    margin-top: 9.38667rem;
+    font-size: .45333rem;
+    text-indent: 0;
+    background: none;
+    animation: dong .5s .6s both;
+}
+
+.text-detail {
+    margin-top: 10.26667rem;
+    font-size: .26667rem;
+    line-height: 1.8;
+    animation: dong .5s .7s both;
+}
+
+.cube-cnt-2, .cube-cnt-3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5.33333rem;
+    height: 1.2rem;
+    animation: cube-cnt-1-anim 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cube-cnt-1-anim {
+    0% {
+        transform: translate(0)
+    }
+    100% {
+        transform: translate( .10667rem, -.10667rem)
+    }
+}
+
+.cube-2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 12.26667rem;
+    margin-right: 3.66667rem;
+    width: 5.33333rem;
+    height: 1.2rem;
+    transform: rotate(-45deg) translate3d(3.06667rem,0,0); /* rotate不写坐标就是围绕Z轴旋转 */
+    background-image: linear-gradient(-90deg,hsla(0,0%,100%,.5),hsla(0,0%,100%,0));
+    animation: cube-2 .8s .8s both
+}
+@keyframes cube-2 {
+    0% {
+        opacity: 0;
+        transform: rotate(-45deg) translateZ(0);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(-45deg) translate3d(3.06667rem,0,0);
+    }
+}
+.cube-2 span {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -.36rem;
+    margin-right: -.36rem;
+    width: .70667rem;
+    height: .70667rem;
+    background-color: #fff;
+    transform: rotate(51deg) skew(20deg);
+}
