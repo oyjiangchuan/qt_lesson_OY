@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象的解构</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            b: 2,
+            a: 1
+        }
+        const {a, b} = obj // 对象的解构数据和属性名一一对应, 和位置无关
+        const {a: aa, b: bb} = obj // 重命名
+        console.log(a, b) // 重命名之前的名也可以输出
+        console.log(aa, bb)
+    </script>
+</body>
+</html>
