@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module"> // 使其支持es6部分语法
+        // import test from './a.js'; // 对应默认导出的导入语法
+        // import {a, b} from './a.js'
+        import { name, age } from './a.js' // 命名导入的语法
+        import * as rename from './a.js' // 不管用什么方式导出的,全部导入一个重命名为rename的对象中
+        console.log(name, age ,rename)
+        // var test1 = {
+        //     c: 3,
+        //     d: 4
+        // }
+        // const {c, d } = test1; // 解构语法
+    </script>
+</body>
+</html>
