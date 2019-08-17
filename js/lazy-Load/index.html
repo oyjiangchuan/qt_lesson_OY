@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片的懒加载</title>
+    <style>
+        .image-item {
+            margin-bottom: 50px;
+            height: 200px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+        <img src="" class="image-item" lazyload="true" data-original="http://img4.imgtn.bdimg.com/it/u=2330196794,1002803516&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img4.imgtn.bdimg.com/it/u=4078564255,2150323891&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img1.imgtn.bdimg.com/it/u=1010420852,9237443&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img2.imgtn.bdimg.com/it/u=1089520985,1354236843&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img5.imgtn.bdimg.com/it/u=3422037188,2772961849&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img2.imgtn.bdimg.com/it/u=470723839,892158253&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img0.imgtn.bdimg.com/it/u=2822460072,3751429216&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img4.imgtn.bdimg.com/it/u=1204416401,4148977011&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img2.3lian.com/2014cf/f6/146/d/92.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img4.imgtn.bdimg.com/it/u=2986630053,3006918851&fm=26&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img1.imgtn.bdimg.com/it/u=1445849682,707146957&fm=11&gp=0.jpg" />
+        <img src="" class="image-item" lazyload="true" data-original="http://img4.imgtn.bdimg.com/it/u=2368698644,1662395078&fm=26&gp=0.jpg" />
+
+        <script>
+            var viewHeight = document.documentElement.clientHeight // 获取浏览器可视区域的高度
+            function lazyload() {
+                var eles = document.querySelectorAll('img[data-original][lazyload]') // 获取含有data-original属性和lazyload为true的img
+                Array.prototype.forEach.call(eles, function(item, index) {
+                    var rect 
+                    if (!item.dataset.original) return
+                    rect = item.getBoundingClientRect() // 返回元素的大小及其相对于视口的位置。
+                    if (rect.bottom >= 0 && rect.top < viewHeight) {
+                        !function(){
+                            var img = new Image()
+                            img.src = item.dataset.original
+                            img.onload = function() {
+                                item.src = img.src
+                            }
+                            item.removeAttribute('data-original') // 移除属性
+                            item.removeAttribute('lazyload') // 移除属性                            
+                        }() // 自执行函数 (function(){})()
+                    }
+                })
+            }
+
+            lazyload()
+            document.addEventListener('scroll', lazyload)
+        </script>
+</body>
+</html>
