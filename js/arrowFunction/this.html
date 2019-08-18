@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var lileiname = '123'
+        var obj = {
+            lileiname: '456'
+        }
+        function lilei() {
+            // 这里的this是window
+            let a = this;
+            console.log(a)
+            var liLeiFun = () => {
+                console.log(this.lileiname)
+            }
+            liLeiFun();
+            console.log(liLeiFun.call(obj)) // 输出123 call apply 不能改变箭头函数的 this
+        }    
+        lilei();
+    </script>
+</body>
+</html>
