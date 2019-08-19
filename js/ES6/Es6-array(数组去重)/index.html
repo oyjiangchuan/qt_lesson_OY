@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const ages = [32, 15, 19, 12]
+        // const allAdultPreset = ages.filter(age => age >= 18)
+        // const adultPreset = ages.some(age => age >= 18)
+        // const allOldEnough = ages.every(age => age >= 18)
+        const array = [1, 2, 1, 1, '1'];
+        // 使用es6的Set可以做到一行代码对数组去重,因为es6中的Set的参数可以用数组传递,同时Set中的值不能重复
+        // console.log([...new Set(array)])
+
+        // array.filter  数组uniq 去重
+        // 两重循环  O (N2)
+        // function uniq(arr) {
+        //     const res = [];
+        //     // 时间复杂度 空间复杂度
+        //     // let j = 0;
+        //     for (let i = 0; arrLen < arr.length; i++) {
+        //         // 没出现过的 push res 
+        //         for (let j = 0; newLenth < res.length; j++) {
+        //             if (arr[i] === res[j]) {
+        //                 break;
+        //             }
+        //             // if (j === newLenth) {
+        //             else {
+        //                 return res.push(arr[i]);
+        //             }
+        //         }
+        //     }
+        //     return res;  
+        // }
+        // console.log(uniq([1, 2, 1, 1, '1']));
+        function uniq(arr) {
+            var res = arr.filter((item, index, arr) => {
+                return arr.indexOf(item) === index;
+            })
+            return res;
+        }
+        console.log(uniq([1, 2, 1, 1, '1']))
+    </script>
+</body>
+
+</html>

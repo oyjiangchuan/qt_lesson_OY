@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- reset 参数, 剩余参数 -->
+    <script>
+        function foo(...args) { // 扩展运算符
+            console.log(args) // 把参数放入数组中,...args必须放在最后
+        }
+        foo(1, 2, 3, 4)
+
+        function sum(...args) {
+            // arguments 类数组, 而args是真正的数组
+            return args.reduce((pre, next) => {
+                return pre + next  // 一定要有返回值
+            })
+        }
+        sum(1, 2, 3, 4)
+
+        function Bar(name = 'default name') { // es6赋默认值的方式
+            // this.name = name || 'default name'; es5赋默认值的方式
+            this.name = name
+        }
+        var b = new Bar();
+
+    </script>
+</body>
+</html>

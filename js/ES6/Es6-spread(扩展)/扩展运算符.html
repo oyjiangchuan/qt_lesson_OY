@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ...rest 的逆运算 数组 对象 打散
+        var arr = [0, 1, 2, 3, 4]
+        console.log(...arr) // 0 1 2 3 4 es6的浅复制
+        console.log([...arr]) // [0, 1, 2, 3, 4]
+
+        // 什么时候用到浅复制(es6)
+        var obj = {
+            a: 1
+        }
+        // var a = obj;
+        // a.a = 2 // a的改变会影响obj的改变
+        // console.log(obj) // 2
+
+        // 如何解决？浅复制,创建一个副本
+        // var a = obj; { a: 1 }
+        // var t = {} obj key value => t
+        var a = { 
+            ...obj,
+            b: 2, // 还可以自己添加属性
+            c: 3
+        }
+        a.a = 2;
+        console.log(a)
+
+        // es5浅复制
+        var c = Object.assign({}, obj, {b: 2, c: 3})
+        console.log('c',c) // {a: 1, b: 2, c: 3}
+        c.a = 123;
+        console.log('c1',c) // {a: 123, b: 2, c: 3}
+
+        // 扩展运算符应用1
+        let arr1 = [100, 120, 156, 300, 400, 15612]
+        let maxArrNum = Math.max(...arr1)
+        arr1.push(...[1, 2, 3, 4])
+        // 扩展运算符应用2(解构和扩展运算符一起运用)可以起到切割数组的效果
+        const [es6, ...es6Array] = arr1
+        let es = arr1[0]
+        let arr2 = arr1.slice(1)
+        // 效果一样 es == es6 && arr2 == es6Array
+    </script>
+</body>
+</html>

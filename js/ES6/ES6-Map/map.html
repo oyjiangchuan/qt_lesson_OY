@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Map的作用1
+        var map = {
+            a: () => { console.log('a') },
+            b: () => { console.log('b') },
+            default: () => { console.log('default') },
+        }
+        doSomething('a');
+        doSomething('b');
+        function doSomething(status) {
+            // if (status === 'a') {
+            //     //
+            // } else if (status === 'b') {
+            //     // 
+            // } else {
+            //     //
+            // }
+            if (map[status]) map[status]()
+            else map['default']();
+        }
+
+        /**
+        * @param {number[]} nums
+        * @param {number} target
+        * @return {number[]}
+        */
+        var twoSum = function (nums, target) {
+            for (let i = 0; i < nums.length; i++) {
+                let num1 = nums[i]; // 基准数
+                for (let j = i + 1; j < j.length; j++) {
+                    let num2 = nums[j]
+                    if (num1 + num2 === target) {
+                        return [i, j]
+                    }
+                }
+            }
+        };
+
+        /**
+        * @param {number[]} nums
+        * @param {number} target
+        * @return {number[]}
+        */
+        var twoSum = function (nums, target) {
+            let map = {}
+            for (let i = 0; i < nums.length; i++) {
+                let num = nums[i];
+                map[num] = i;
+            }
+            for (let j = 0; j < nums.length; j++) {
+                let num1 = nums[j];
+                let anotherNum = target - num1;
+                if (map[anotherNum] !== undefined && map[anotherNum] !== j) {
+                    return [j, map[anotherNum]]
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="box1"></div>
+    <script>
+        var box = document.getElementById('box')
+        var box1 = document.getElementById('box1')
+        var Es5map = { // es5中的key 只能是字符串和symbol,其他的值会默认toString之后赋值给key
+            b: 2,
+            a: 1,
+            '1':1,
+            [box]: 'box',
+            [box1]: 'box1'
+        }
+        Object.keys(Es5map).forEach((key) => {
+            console.log(key)
+            console.log(Es5map[key])
+        })
+        // var Es6map = new Map()
+        // Es6map.set('b',1)
+        // Es6map.set('a',2)
+        // Es6map.set()
+        // console.log(Object.keys(Es5map)) // ["1", "b", "a"] 不能保证遍历出来的顺序
+        // for (let k of Es6map.keys()) {
+        //     console.log(k) // b a 可以保证顺序
+        // }
+    </script>
+</body>
+
+</html>

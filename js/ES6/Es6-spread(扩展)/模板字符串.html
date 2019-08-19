@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 模板字符串 是 普通字符串的增强(普通用法) 相当于饿es5中string的concat()方法,拼接字符串
+        const str = `${[1, 2, 3].map(e => `<li>${e}</li>`).join()}` // 花括号里面可以写任意的js表达式
+        // 标签模板 是 模板字符串的增强
+        // 提供了 模板字符串 的信息 让我们自定义模板字符串 的组合
+        let total = 100,
+            count = 10,
+            price = 200
+        function combine(string, ...args) {
+            console.log(string) // ["the total is ", ", the count is ", " the price is ", ""]
+            console.log(args)  // [100, 10, 200]
+            let i = 0, result = '';
+            while (i < string.length) {
+                result += string[i];
+                if (i < args.length) result += (args[i] * 200);
+                i++;
+            }
+            return result
+        }
+        combine`the total is ${total}, the count is ${count} the price is ${price}`;
+
+        const dict = {
+            html: 'hyper text markup lang',
+            css: 'style sheets',
+            js: 'javascript'
+        }
+
+        function combine1(string, ...args) {
+            console.log(string) // ["the total is ", ", the count is ", ""]
+            console.log(args)  // [100, 10]
+            let i = 0, result = '';
+            while (i < string.length) {
+                result += string[i];
+                if (i < args.length) {
+                    let value = args[i];
+                    if (dict[value]) {
+                        result += `<strong>${dict[value]}</strong>`
+                    }
+                }
+                    i++;
+                }
+                return result
+            }
+            let html = combine1`i am lilei, i learn ${'html'}, ${'css'}`;
+            document.getElementById('box').innerHTML = html
+    </script>
+</body>
+
+</html>

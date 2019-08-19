@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var map = new Map();
+        map.set('我是a', () => { // 设置key:value
+            console.log('a');
+        })
+        // map.get('a')()
+        // map遍历key
+        // for (let key of map.keys()) {
+        //     console.log(key)
+        // }
+        // // map遍历value
+        // for (let value of map.values()) {
+        //     console.log(value)
+        // }
+        // // map遍历key和value的组合
+        // for (let kv of map.entries()) {
+        //     console.log(kv)
+        // }
+        // map.delete('a')
+        // console.log(map.has('a'), map.size)
+
+        // for (let key in map) { // for-in只能遍历数组,对象,字符串,在map中无效
+        //     console.log(key)
+        //     console.log(map[key])
+        // }
+
+        map.forEach((value, key, map) => { // map的forEach()方法
+            console.log(key)
+            console.log(value)
+        })
+    </script>
+</body>
+</html>

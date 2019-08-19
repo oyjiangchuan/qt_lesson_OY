@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise</title>
+</head>
+
+<body>
+    <script>
+        // 回调方法解决异步问题的方式(异步问题多的话,服务器吃不消)
+        // function a() {
+        //     console.log(1)
+        // }
+        // function b() {
+        //     setTimeout(() => {
+        //         console.log(2)
+        //         c()
+        //     }, 1000)
+        // }
+        // function c() {
+        //     console.log(3)
+        // }
+        // a()
+        // b()
+
+        // es6解决异步方法 Promise .then() 
+        let xq = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('猛哥要相亲了！')
+                    resolve('相亲很顺利！') // resolve一定要写,但是内容有没有用取决你想不想要(正确执行)
+                }, 1000)
+            })
+        }
+        function marry() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                console.log('猛哥结婚了！')
+                resolve('结婚很顺利！')
+            }, 500)
+            })
+        }
+        function sw() {
+            console.log('猛哥当爸爸了！')
+        }
+        // xq().then((e) => { // 这个e参数就是前面的resolve抛出的数据
+        //     console.log(e)
+        //     marry().then((e) => {
+        //         console.log(e)
+        //         sw()
+        //     })
+        // }) // 在.then方法中调用方法不需要添加括号
+        // marry();
+        xq().then(marry).then(sw)
+    </script>
+
+</body>
+
+</html>

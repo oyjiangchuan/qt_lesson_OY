@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function bar(a, a) { // 后面的形参会覆盖前面的形参,不会报错
+            console.log(arguments,a)
+            // let a = Array.from(arguments)
+            // let b = Array.prototype.slice.call(arguments)
+            console.log(a.forEach)
+        }
+
+        function Foo(a) {
+            this.a = a
+        }
+        Foo.prototype.sayA = function() {
+            console.log(this.a)
+        }
+        var fooObj = new Foo(1); // { a: 1}
+
+        let arr = [1, 2, 3, 4]
+        Array.prototype.reverseJoin = function() {
+            let arr = this;
+            return arr.reverse().join();
+        }
+        arr.reverseJoin()
+        // Array 是一个js 内置的构造函数
+        // let arr = [];
+        // arr.forEach();
+
+        bar(1, 2) // 输出2
+
+        const bar_arrow = (a, b) => { // 会报错
+            return 123
+        }
+        bar_arrow(3, 4)
+    </script>
+</body>
+</html>
