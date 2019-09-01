@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手写new操作</title>
+</head>
+<body>
+    <script>
+        function Foo(e) {
+            this.name = 'ouyang'
+            this.age = e
+            // return {}
+        }
+        function objNew(Constrctor, ...args) {
+            const obj = {}
+            obj.__proto__ = Constrctor.prototype
+            let ret = Constrctor.apply(obj, args)
+            return typeof ret === 'object' ? ret : obj
+        }
+        console.log(objNew(Foo, 23))
+        // console.log(new Foo())
+    </script>
+</body>
+</html>
