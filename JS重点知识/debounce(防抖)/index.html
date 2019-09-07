@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Debounce</title>
+</head>
+<body>
+  <div>
+    <label for="unDebounce">
+      没有防抖的input
+    </label>
+    <input type="text" id="unDebounce"/>
+
+    <label for="debounce">
+        防抖的input
+      </label>
+      <input type="text" id="debounce"/>
+    <script>
+      let inputA = document.getElementById('unDebounce'),
+          inputDebounce = document.getElementById('debounce')
+      // 搜索信息建议
+      // 会带来大量的事件执行
+      inputA.addEventListener('keyup', function(e) {
+        let value = e.target.value
+        ajax(value);
+      })
+
+      inputDebounce.addEventListener('keyup', function(e) {
+        // 防抖的函数
+        // 最后执行的是ajax return ajax() 高阶函数
+        debounceAjax(e.target.value);
+      })
+
+      let debounceAjax = debounce(ajax, 500)
+      // 通用功能  func === ajax, delay
+      function debounce(func, delay) {
+        // 高阶函数: 1.参数是函数 或者 2.返回的是函数
+        // 闭包 func ajax 未来被执行
+        return function (args) {
+          // func可以在这里被引用到,这里产生一个闭包
+          // args 被真正执行时  传过来的参数
+          // delay 上场
+
+          // 传统将this指向debounce
+          // let that = this
+          clearTimeout(func.id) // 清除上一次留下的定时器
+
+          func.id = setTimeout(() => {
+            // func.call(that)
+            func.call(this, args)
+          },delay)
+        }
+      }
+      function ajax(content) {
+        console.log(content)
+      }
+    </script>
+  </div>
+</body>
+</html>
