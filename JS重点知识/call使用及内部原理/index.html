@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call</title>
+</head>
+<body>
+    <script>
+        // let a = 1
+        // function test() {
+        //     console.log(this === window) // true
+        //     console.log(this.a) // a = 1
+        // }
+        // // test()
+        // var obj = {
+        //     a: 2
+        // }
+        // test.call(obj);
+
+        // 模拟一个call函数的实现
+
+        Function.prototype.myCall = function(obj, ...args) {
+            obj._fn = this // 当哪个函数调用myCall()时就把该函数添加进传入对象参数的方法
+            // 单纯的运行 return值 被吞掉了
+            // obj._fn(...args)
+            // obj._fn === testMyCall === this
+            let res = obj._fn(...args) // 这里要用一个变量装testMyCall()运行的返回值,最后再返回出去
+            delete obj._fn
+            return res;
+        }
+        function testMyCall(b, c) {
+            // console.log(this.a)
+            // console.log(b)
+            // console.log(c)
+            return this.a + b + c
+        }
+        let testObj = {
+            a: 'a val'
+        }
+        // testObj._fn()
+        let t = testMyCall.myCall(testObj, 'b val', 'c val') // 就是让testMyCall中的this指向 testObj 就是上一行代码原理,让testMyCall作为传入的对象中的一个属性被该对象调用
+        console.log(t)
+    </script>
+</body>
+</html>
