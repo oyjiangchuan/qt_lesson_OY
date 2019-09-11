@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>map</title>
+</head>
+<body>
+  <script>
+    let money = [10, 11, 12]
+    let mapMoney = money.map(item => {
+      return 10 * item;
+    })
+    console.log(money, mapMoney) // [10, 11, 12]  [100, 110, 120] 返回一个新的数组 map好用使代码更加简洁
+    // for forEach
+    let newMoney = [];
+    money.forEach(item => {
+      newMoney.push(item * 10)
+    })
+    console.log(newMoney)
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>reduce</title>
+</head>
+<body>
+  <script>
+    let money = [10, 11, 12]
+    // 10 + 11
+    // 10 + 11 + 12
+    let count = money.reduce((pre, next) => {
+      // 1: 10 11
+      // 2: 21 12
+      console.log(pre, next)
+      return pre + next // return 的值会存入下一次的pre的值中
+    })
+    console.log(count)
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组最大值</title>
+</head>
+
+<body>
+  <script>
+    let arr = [0, 9, 3, 7]
+    // let maxNumber = Math.max(...arr)
+    // console.log(maxNumber)
+
+    // 传统for循环的写法
+    function findMax(arr) {
+      let maxNumber = arr[0];
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > maxNumber) {
+          maxNumber = arr[i]
+        }
+      }
+      return maxNumber;
+    }
+    console.log(findMax(arr))
+
+    // 使用reduce改写
+    function findMax1(arr) {
+      return arr.reduce((pre, next) => {
+        if (pre > next) {
+          return pre
+        }
+        return next
+      })
+    }
+    console.log(findMax(arr))
+
+    function shuixian(num) {
+      let Snum = num.toString()
+      let Slength = Snum.length;
+      // let sum = 0;
+      // for (let item of Snum) {
+      //   sum += Math.pow(parseInt(item), Slength)
+      // }
+      // return sum === num;
+      let arrNum = Snum.split('')
+      console.log(arrNum)
+      let sum = arrNum.reduce((pre, next) => {
+        console.log(pre, next)
+        return pre + Math.pow(parseInt(next), Slength)
+      }, 0)
+      console.log(sum)
+      return sum === num
+    }
+  </script>
+</body>
+
+</html>
