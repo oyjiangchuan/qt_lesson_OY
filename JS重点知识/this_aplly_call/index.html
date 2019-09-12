@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this/aplly/call</title>
+</head>
+
+<body>
+    <script>
+        // es5的经典话题    
+        // var name = 'windowName'; // global window
+        // function a() {
+        //     var name = 'cherry'; // 局部函数作用域
+        //     console.log(name); // cherry
+        //     console.log(this.name); // windowName
+        // }
+        // a();
+        // var b = {
+        //     name: 'mark',
+        //     fn: function() {
+        //         console.log(this.name)
+        //     }
+        // }
+        // b.fn(); // mark
+        // var c = b.fn;
+        // console.log(typeof c) // function
+        // c(); // windowName此时c作为普通函数运行,内部this指向全局的window
+        // c.apply(b);
+        var a = {
+            name: "Cherry",
+            func1: function () {
+                console.log(this.name);
+            },
+            func2: function () {
+                console.log(this, '------');
+                // var that = this;
+                //this 丢失
+                setTimeout(() => {
+                    // this window 
+                    console.log(this, '+++++++'); // 此时的this指向window 用箭头函数时this指向上一级
+                    this.func1();
+                }, 1000)
+            }
+        }
+        a.func2();
+    </script>
+</body>
+
+</html>
