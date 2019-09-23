@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>var</title>
+</head>
+
+<body>
+  <script>
+    console.log(a) // a定义了但是没赋值 undefind; 如果未定义会出现 Uncaught ReferenceError: a is not defined
+    var a = 10; // var创建的变量 会进行变量提升
+    function a() {
+      console.log(123)
+    }
+    console.log(a) // 10
+
+    // function 声明 和 赋值 都会提升() 但是 var 只会提升变量声明 但是赋值还是在正常的位置
+    // var a
+    // function a() {
+    //   console.log(123)
+    // }
+    // console.log(a)
+    // a = 10
+
+    var x = 1,
+        y = 0,
+        z = 0;
+    function add(x) {
+      return (x = x + 1);
+    }
+    y = add(x);
+    console.log(y)
+    function add(x) {
+      return (x = x + 3);
+    }
+    z = add(x);
+    console.log(z)
+
+    // 函数声明
+    foo1()
+    function foo1() {}
+
+    // 函数表达式
+    foo2()
+    var foo2 = function() {}
+    // 流程
+    // var foo2
+    // foo2()
+    // foo2 = function() {}
+  </script>
+</body>
+
+</html>
