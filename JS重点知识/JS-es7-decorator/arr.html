@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ES7</title>
+</head>
+<body>
+  <script>
+    // 怎么知道 数组元素发生了变化？
+    // 1.Porxy; 2.劫持
+    // Object.defineProperty() 可以监听对象的变化 但是不能监听数组
+
+    // 劫持(版本一)
+    // function $push(a) {
+       // 
+    //   Array.prototype.push(a);
+    // }  
+    // $push(1)
+
+    // 劫持(版本二)
+    let originalPush = Array.prototype.push;
+    Array.prototype.push = function(...args) {
+      // 
+      console.log('push 被我劫持了')
+      originalPush.call(this, ...args)
+    }
+    var arr = [1, 2, 3]
+    arr.push(4)
+  </script>
+</body>
+</html>
