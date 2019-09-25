@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组的解构</title>
+</head>
+<body>
+    <script>
+        // 数组的解构
+        var arr = [2, 3, {a: 1}];
+        var [a, b, c] = arr;
+        var [, , d, e] = arr;
+        console.log(a, b, c, d, e) // 解构不成功值为undefined,位置和数据一一对应,和名字无关 2 3 {a: 1} {a: 1} undefined
+    </script>
+</body>
+</html>
