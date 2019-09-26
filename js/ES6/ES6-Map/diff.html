@@ -17,7 +17,7 @@
         var Es5map = { // es5中的key 只能是字符串和symbol,其他的值会默认toString之后赋值给key
             b: 2,
             a: 1,
-            '1':1,
+            '1': 1,
             [box]: 'box',
             [box1]: 'box1'
         }
@@ -25,6 +25,12 @@
             console.log(key)
             console.log(Es5map[key])
         })
+        // 输出的顺序是这样,打乱了,不一定会按照设置时候的顺序来输出结果
+        // 1 1
+        // b 2
+        // a 1
+        // [object HTMLDivElement] box1
+
         // var Es6map = new Map()
         // Es6map.set('b',1)
         // Es6map.set('a',2)
@@ -33,6 +39,15 @@
         // for (let k of Es6map.keys()) {
         //     console.log(k) // b a 可以保证顺序
         // }
+        var Es6map = new Map()
+        Es6map.set('b', 2)
+        Es6map.set('a', 1)
+        Es6map.set('1', 1)
+        Es6map.set([box1], 'box1')
+        Es6map.set([box], 'box')
+        for (let keys of Es6map.keys()) {
+            console.log(keys) // b a 1 [div#box1] [div#box]
+        }
     </script>
 </body>
 

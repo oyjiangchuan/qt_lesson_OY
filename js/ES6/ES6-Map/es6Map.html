@@ -12,30 +12,31 @@
         map.set('我是a', () => { // 设置key:value
             console.log('a');
         })
-        // map.get('a')()
+        map.get('我是a')() // a
         // map遍历key
         // for (let key of map.keys()) {
-        //     console.log(key)
+        //     console.log(key) // 我是a
         // }
-        // // map遍历value
+        // map遍历value
         // for (let value of map.values()) {
-        //     console.log(value)
+        //     console.log(value) // a
         // }
-        // // map遍历key和value的组合
+        // map遍历key和value的组合
         // for (let kv of map.entries()) {
-        //     console.log(kv)
+        //     console.log(kv) // ["我是a", ƒ]返回的是一个数组
         // }
         // map.delete('a')
-        // console.log(map.has('a'), map.size)
+        // console.log(map.has('a'), map.size) // false 0
 
         // for (let key in map) { // for-in只能遍历数组,对象,字符串,在map中无效
         //     console.log(key)
         //     console.log(map[key])
         // }
 
-        map.forEach((value, key, map) => { // map的forEach()方法
-            console.log(key)
-            console.log(value)
+        map.forEach((value, key, map) => { // map的forEach()方法第一个参数为value,第二个参数为key
+            console.log(value) // () => { // 设置key:value  console.log('a');}
+            console.log(key) // "我是a"
+            console.log(map) // Map(1) {"我是a" => ƒ}
         })
     </script>
 </body>
