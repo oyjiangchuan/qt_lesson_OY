@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+    // Es5第一种继承方式:使用call()方法,借用构造函数的方式
+    /* function Parent1() {
+        this.name = 'parent1'
+    }
+    function Child1() {
+        Parent1.call(this)
+        this.type = 'child1'
+    }
+    Child1.prototype.fn = function() {
+        console.log(this.name)
+    }
+    let child = new Child1()
+    console.log(child) // Child1 {name: "parent1", type: "child1"} */
+
+    // Es5第二种继承方式:原型链(问题:会使超类中的属性被子类的prototype继承,在子类的实例中对子类的prototype做一些操作修改时,会反应在其他的实例中)
+    /* function Parent2() {
+        this.name = 'parent2'
+        this.play = [1, 2, 3]
+    }
+    Child2.prototype = new Parent2()
+    function Child2() {
+        this.type = 'child2'
+    }
+    let child = new Child2()
+    child.play.push(4)
+    let child2 = new Child2()
+    console.log(child2.play) // [1, 2, 3, 4] */
+
+    // Es5第三种继承方式:组合继承(实际是给每一个子类的实例都创建超类中的属性用以覆盖子类prototype中的同名属性)
+    function Parent3() {
+        this.name = 'parent3'
+        this.play = [1, 2, 3]
+    }
+    function Child3() {
+        this.type = 'child3'
+        Parent3.call(this)
+        console.log(this) // 此时的this指向的就是Child3()的实例
+    }
+    // Child3.prototype = new Parent3() // 这里两次调用了Parent3()构造函数,可以优化使用Es5中的Object.create()方法实现
+
+    // Child3.prototype = Parent3.prototype
+    // Child3.prototype.constructor = Child3
+
+    // Child3.prototype = Object.create(Parent3.prototype)
+    // Child3.prototype.constructor = Child3
+    // 优化方案
+    function inherit(Parent, Child) {
+        var prototype = Object.create(Parent.prototype)
+        Child.prototype = prototype
+        // console.log(Child.prototype) // Parent3 {}
+        Child.prototype.constructor = Child // 此时的Child.prototype因为指向了Parent.prototype的实例导致Child.prototype.constructor和Child的实例都会指向Parent, 所以要重新设置constructor的指向
+    }
+    inherit(Parent3, Child3);
+    let child = new Child3()
+    console.log(child)
+    </script>
+</body>
+</html>
