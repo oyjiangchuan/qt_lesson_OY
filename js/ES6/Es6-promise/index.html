@@ -31,7 +31,8 @@
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     console.log('猛哥要相亲了！')
-                    resolve('相亲很顺利！') // resolve一定要写,但是内容有没有用取决你想不想要(正确执行)
+                    // resolve('相亲很顺利！') // resolve一定要写,但是内容有没有用取决你想不想要(正确执行)
+                    reject('相亲失败')
                 }, 1000)
             })
         }
@@ -54,7 +55,12 @@
         //     })
         // }) // 在.then方法中调用方法不需要添加括号
         // marry();
-        xq().then(marry).then(sw)
+        xq().catch((e) => {
+            console.log(e)
+            marry()
+        }).then(sw)
+        // Promise.all([xq(), marry()]).then(sw) // 让all里面的所有方法执行完再执行then之后的方法
+        // Promise.race([xq(), marry()]).then(sw) // 只要race里面有一个方法执行完就执行then之后
     </script>
 
 </body>
