@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端</title>
+</head>
+<body>
+  <!-- 协议://域名.com:port(默认80) 协议域名端口号 -->
+  <!-- http://www.baidu.com:80 -->
+  <!-- https://www.baidu.com:443 -->
+  <!-- 三部分 只要有一个不同 就会产生跨域 -->
+  <!-- baidu.com  -> api.baidu.com 也会跨域 -->
+  <!-- script -->
+  <script>
+    function getBook(data) {
+      console.log('data', data)
+    }
+  </script>
+  <!-- getBook([{}, {}]) -->
+  <script src="http://localhost:3000/api/books?callback=getBook"></script><!-- script标签会将请求回来的内容当成js执行 -->
+  <!-- 怎么保持前后端方法名一致？ 前端在请求的时候把方法名传递给后端 后端接收到再拼接在返回值中 -->
+
+  <!-- 封装一个jsonP?
+    jsonP({
+      url: 'http:/localhost:3002/api/book',
+      callback: 'callback' // 传的字段
+    })
+    .then(res => {})
+  -->
+
+  <script>
+    function jsonP(option) {
+      const { url, callback } = option
+      return new Promise((resolve, reject) => {
+        let methodName = 'getdata' // 在window下定义方法
+        window[methodName] = function(data) {
+          resolve(data)
+          delete window[methodName]
+          document.body.removeChild(scriptNode)
+        }
+        var scriptNode = document.createElement('script')
+        scriptNode.src = `${url}?${callback}=${methodName}`
+        document.body.appendChild(scriptNode)
+        
+        scriptNode.onerror = function() {
+          reject('error')
+        }
+      })
+    }
+    jsonP({
+      url: 'http://localhost:3000/api/books',
+      callback: 'callback'
+    }).then(res => {
+      console.log(res)
+    })
+  </script>
+</body>
+</html>
