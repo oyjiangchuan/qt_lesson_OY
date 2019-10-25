@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>预编译</title>
+</head>
+<body>
+  <script>
+    // console.log(a) // undefined 变量 声明提升 赋值不会提升
+    // var a = 123
+    
+    // test() // 函数声明整体提升
+    // function test() {
+    //   console.log('hello world')
+    // }
+
+    function fn(a) {
+      console.log(a)
+      var a = 123
+      console.log(a)
+      function a() {}
+      console.log(a)
+      var b = function () {}
+      console.log(b)
+      function d() {}
+    }
+    fn(1)
+    // f a() {}
+    // 123
+    // 123
+    // f () {}
+    // 预编译 四部曲 发生在函数执行之前 注意 这仅仅是预编译 不是执行 函数的执行
+    // 1. 创建AO对象
+    // 2. 找形参和变量声明 将变量声明和形参 作为AO属性名 值为 undefined
+    // 3. 将实参值和形参值统一
+    // 4. 在函数体找到函数声明，将函数声明作为AO对象属性名 值赋予函数体
+  </script>
+</body>
+</html>
