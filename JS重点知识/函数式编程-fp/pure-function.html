@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>纯函数</title>
+</head>
+<body>
+  <script>
+    // 纯函数：1.相同的输入会有相同的输出 2.不依赖外部环境 3.不会对外部造成影响
+    const add = (a, b) => a + b
+    
+    // 非纯函数
+    // Math.random()
+    // new Date()
+    // DOM
+    // I/O
+
+    let b = 20
+    const add1 = (a) => {
+      var b = 30
+      return a + b
+    }
+    console.log(add1(120)) // 150
+    console.log(b) // 20
+    
+
+
+    // 纯函数好处：
+    // 1. 易于测试
+    // 2. 结果缓存
+
+    // 使用Map进行缓存
+    let cache = new Map()
+    const meoryAdd = function(a, b) {
+      const key = JSON.stringify(Array.from(arguments))
+      console.log(key)
+      if (cache.has(key)) {
+        return cache.get(key)
+      }
+      let res = a + b
+      cache.set(key, res)
+      return res
+    }
+
+    // 函数式编程 思维上升到 有一批函数有相同的过程
+    
+    const memorize = function(fn) {
+      let cache = new Map()
+      return function(...args) {
+        console.log(args)
+        let key = JSON.stringify(args)
+        console.log(key)
+        console.log('[1,2]')
+        console.log('{a: 1, b: 2}')
+        console.log(JSON.stringify({a: 1, b: 2}))
+        if (cache.has(key)) {
+          return cache.get(key)
+        }
+        const res = fn(...args)
+        cache.set(res)
+        return res
+      }
+    }
+    const madd = memorize(add)
+    console.log(madd(1, 2))
+  </script>
+</body>
+</html>
