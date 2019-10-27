@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一版promise</title>
+</head>
+<body>
+  <script>
+    function MyPromise(executor) {
+      var self = this
+      self.status = 'pending' // 初始状态
+      function resolve(val) { /* console.log(val) */  
+        self.status = 'resolved'
+        self.data = val
+      }
+      function reject() {}
+      executor(resolve, reject)
+    }
+    
+    MyPromise.prototype.then = function(onResolve) {
+      onResolve(this.data)
+    }
+
+    var p = new MyPromise((resolve, reject) => {
+      resolve('123456')
+    })
+    p.then(res => {
+      console.log(res)
+    });
+    // 把then里面的回调给resolve
+  </script>
+</body>
+</html>

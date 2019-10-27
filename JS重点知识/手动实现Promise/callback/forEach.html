@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>回调</title>
+</head>
+<body>
+  <script>
+    // 实现一个myForEach 功能和 数组的 forEach 一样
+    var arr = [0, 1, 2, 3]
+    arr.forEach((item, index, list) => {
+      console.log(item, index, list)
+    })
+    arr.prototype.myForEach = function(fn) {
+      for(let i = 0; i < this.length; i++) {
+        // 回调执行的地方
+        fn(this[i], i, this);
+      }
+    }
+  </script>
+</body>
+</html>
