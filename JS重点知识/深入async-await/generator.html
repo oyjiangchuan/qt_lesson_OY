@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>generator</title>
+</head>
+<body>
+  <script>
+    // generator 函数
+    // 每次next遇到yield关键词,代码就停止执行
+    function* test() {
+      console.log(1)
+      let a = yield 'val'
+      console.log(a) // undefined
+      let b = yield '123'
+      console.log(b) // undefined
+      console.log('end') // end
+    }
+    const obj = test() // 返回迭代器
+    // console.log(obj)
+    // console.log(obj.next()) // {value: "val", done: false}
+    // console.log(obj.next()) // {value: "123", done: false}
+    // console.log(obj.next()) // {value: undefined, done: true} done表示有没有执行完
+
+    // console.log(obj.next(1)) // next中的参数是给上一个yield 返回值
+    // console.log(obj.next(2))
+    // console.log(obj.next(3))
+
+    // TJ co autoRun 就是 类似 co 的东西
+    function autoRun(generatorFunc) {
+      let generatorObj = generatorFunc()
+      let g = generatorObj.next()
+      while(!g.done) {
+        console.log('-------', g)
+        g = generatorObj.next(g.value) // g.value是上一次的返回值
+      }
+    }
+    autoRun(test)
+  </script>
+</body>
+</html>

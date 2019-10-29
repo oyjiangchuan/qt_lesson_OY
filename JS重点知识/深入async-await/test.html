@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+</head>
+<body>
+  <script>
+    let a = 0
+    async function test() {
+      // let b = await 10
+      // a = a + b
+      let c = a
+      console.log(c) 
+      let b = await 10
+      c = c + b
+      console.log(c) // 11
+    }
+    // Promise是会等到then才会执行 await 会把后面的代码放到Promise.then()里面 作为回调后执行 所以会先进行a++ 
+    test()
+    a++
+    console.log(a) // 1
+  </script>
+</body>
+</html>
