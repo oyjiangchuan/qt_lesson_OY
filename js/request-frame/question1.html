@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log('start')  /* 宏任务之后把所有的微任务执行完 再进行下一次的宏任务  再反复 */
+
+    setTimeout(() => {
+      console.log('time 0')
+    }, 0)
+
+    setTimeout(() => {
+      console.log('time 200')
+    }, 200)
+
+    Promise.resolve().then(() => {
+      console.log('promise 1')
+    }).then(() => {
+      console.log('promise 1 then')
+    })
+
+    Promise.resolve().then(() => {
+      console.log('promise 2')
+    })
+
+
+  </script>
+</body>
+</html>
