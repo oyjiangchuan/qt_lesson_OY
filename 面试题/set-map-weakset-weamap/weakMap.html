@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="logo">123</button>
+  <script>
+    // 一个只能以对象作为键名的map weakMap上的每一个 键名的引用 也是弱引用
+    let element = document.getElementById('logo')
+    let myWeaMap = new WeakMap()  
+    myWeaMap.set(element, {timesCliked: 0})
+    element.addEventListener('click', function() {
+      let logoDtae = myWeaMap.get(element)
+      logoDtae.timesCliked++
+      console.log(logoDtae)
+    }, false)
+  </script>
+</body>
+</html>

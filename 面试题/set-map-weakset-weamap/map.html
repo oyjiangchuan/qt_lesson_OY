@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Map</title>
+</head>
+
+<body>
+  <div id="myDiv"></div>
+  <script>
+    const data = {}
+    // const element = document.getElementById('myDiv')
+    // data[element] = 'metaData'
+    // data['[object HTMLDivElement]']
+    // console.log(data) // [object HTMLDivElement]: "metaData"  对象只接收字符串为key值
+
+    const map = new Map()
+
+    const k1 = ['a']
+    const k2 = ['a']
+
+    map
+      .set(k1, 111)
+      .set(k2, 222)
+
+    console.log(map) // Map(2) {Array(1) => 111, Array(1) => 222} 可以用数组和任何的数据结构作为key值 Map的键实际上是跟内存地址绑定的,只要内存地址不一样,就视为两个键
+
+    map.get(k1) // 111
+    map.get(k2) // 222
+  </script>
+</body>
+
+</html>
