@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      border-left: 1px;
+      border-right: 1px;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="el"></div>
+  <script>
+    // 最小化回流和重绘
+
+    const el = document.getElementById('el')
+    // el.style.padding = '5px'
+    // el.style.borderLeft = '1px'
+    // el.style.borderRight = '1px'
+    el.style.cssText += 'border-left: 1px; border-right: 1px; padding: 5px;'  // 使用cssText一次性修改样式 可以减少回流和重绘
+    el.className += 'active' // 更加优雅的写法 动态添加类名
+  </script>
+</body>
+
+</html>
