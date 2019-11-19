@@ -11,3 +11,8 @@
 - npm i vue-router --save-dev
 - npm i webpack-dev-server --save-dev 使用webpack启用web服务
 - npm i html-webpack-plugin --save-dev 模板编译 生成html文件
+- npm i css-loader stylus stylus-loader --save-dev
+- npm i --save-dev cross-env
+- npm i less less-loader --save
+- npm i --save-dev style-loader
+- npm i url-loader file-loader --save-dev

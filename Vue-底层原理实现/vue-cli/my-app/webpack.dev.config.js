@@ -1,7 +1,8 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 提取css的插件 将其和JS分离
+// const CopyWebpackPlugin = require('copy-webpack-plugin') // 拷贝assets目录 自动化
 
 module.exports = { // module.exports导出
   entry: path.join(__dirname, 'src/index.js'),
@@ -19,6 +20,27 @@ module.exports = { // module.exports导出
       {
         test: /\.vue$/,
         loader: 'vue-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [ // 使用什么转义css 从后到前的编译
+          // MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV !== 'production' ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192 // 限制url地址长度
+          }
+        }]
       }
     ]
   },
@@ -27,6 +49,10 @@ module.exports = { // module.exports导出
     new HtmlWebpackPlugin({ // 配置模板文件 把打包完的代码直接自动引入当前index.html中
       filename: 'index.html', // 生成的文件名字
       template: path.join(__dirname, './src/index.html')
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'index.css',
+      allChunks: true // 将多个css 合并打包成一个文件
     })
   ],
   resolve: {
