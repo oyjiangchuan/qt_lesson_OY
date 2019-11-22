@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- useScaleAble: no -->
+  <!-- 添加viewpoint meta标签解决移动端300ms延时 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <label for="touchstart">touchstart:</label>
+    <span id="touchstart"></span>
+  </div>
+  <div>
+    <label for="touchend">touchend:</label>
+    <span id="touchend"></span>
+  </div>
+  <div>
+    <label for="click">click:</label>
+    <span id="click"></span>
+  </div>
+  <div id="test">
+    <div>开始检测</div>
+    <div id="diff">计算时间</div>
+  </div>
+  <script>
+    // 移动端点击的时候
+    // 按该顺序执行事件 touchstart touchend click(会延迟)
+    var test = document.getElementById('test');
+    var diff = document.getElementById('diff');
+
+    var touchstart = document.getElementById('touchstart');
+    var touchend = document.getElementById('touchend');
+    var click = document.getElementById('click');
+
+    test.addEventListener('touchstart', () => {
+      touchstart.innerHTML = Date.now()
+    })
+    test.addEventListener('touchend', (e) => {
+      // e.preventDefault() // 阻止默认事件
+      // 1. test.click() // 代码将其提前
+      // 2. 自定义事件
+      // let event = document.createEvent('MouseEvents')
+      // // 第一个true 代表冒泡 第二个true 代表 是否阻止默认事件 e.preventDefault()
+      // event.initEvent('click', true, true) // 自定义的事件
+      // test.dispatchEvent(event) // 派发自定义事件 
+      touchend.innerHTML = Date.now()
+    })
+
+    test.addEventListener('click', (e) => {
+      console.log(e)
+      click.innerHTML = Date.now()
+    })
+
+    diff.addEventListener('click', () => {
+      let p = document.createElement('p')
+      p.innerHTML = click.innerText - touchend.innerText
+      document.body.appendChild(p)
+    })
+
+    // 冒泡事件 
+    // e.currentTarget 是绑定事件的参数(可能是父节点)
+    // e.target是触发事件的参数(可能是子节点) 点击哪个就是哪个
+    // 可以通过e.path查找父节点兄弟节点
+  </script>
+</body>
+
+</html>
