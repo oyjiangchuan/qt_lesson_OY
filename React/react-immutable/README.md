@@ -1,0 +1,1 @@
+- cnpm i immutable -s 安装immutable 和 react配合使用 immutable特性: 结构共享
