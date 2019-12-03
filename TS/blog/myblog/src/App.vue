@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Nav></Nav>
+    <Nav v-if="isShowNav"></Nav>
     <router-view/>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 // import Component from "vue-class-component"; Component的另外一种引入方法
 import Nav from "@/components/nav.vue";
 @Component({
@@ -15,7 +15,11 @@ import Nav from "@/components/nav.vue";
   }
 })
 export default class App extends Vue {
-
+  private isShowNav: boolean = false
+  @Watch('$route')
+  routeChange(newVal: boolean, oldVal) {
+    
+  }
 }
 </script>
 

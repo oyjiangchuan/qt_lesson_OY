@@ -32,7 +32,7 @@
           </el-col>
         </el-row>
       </div>
-      <RegisterAndLogin :visible="visible" @cancel="handleCancel" />
+      <RegisterAndLogin :visible="visible" @cancel="handleCancel" :handleFlag="handleFlag" />
     </div>
   </div>
 </template>
