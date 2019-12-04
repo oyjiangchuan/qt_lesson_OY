@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>this</title>
+</head>
+
+<body>
+  <script>
+    this.a = 20 // window.a
+    function go() {
+      // new 调用 this 指哪 ？？? 实例
+      // 先创建空对象{}
+      // this 指向一个对象 继承自 go.prototype
+      // 把this.a, this.b a b 这俩刚刚属性赋值上去
+      console.log(this.a) // 获取go.prototype.a
+      this.a = 30
+      // return {} 
+      // {
+      //   a: 30,
+      //     __proto__: {
+      //     a: 40
+      //   }
+      // }
+    }
+    go.prototype.a = 40
+    var test = {
+      a: 50,
+      init: function (fn) {
+        fn();
+        console.log(this.a)
+        return fn;
+      }
+    }
+    // 第一问
+    // console.log(new go().a) // 40 30
+    // 第二问
+    test.init(go) // 20 50 一个函数在另外的函数里面调用, 不管放的多深 只要没有改变this的指向 前面没有.调用时 就是window调用
+    // 第三问
+    var p = test.init(go) // 30 50
+    // 第四问
+    p() // 30
+  </script>
+</body>
+
+</html>
