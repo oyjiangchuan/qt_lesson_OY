@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person() {
+      this.age = 40
+    }
+    Person.prototype.say = function () { }
+    var p = new Person()
+    console.log(p.__proto__.__proto__.__proto__) // null
+    // 当获取 person.constructor 时，其实 person 中并没有 constructor 属性, constructor 属性 只存在原型对象中，当不能读取到constructor 属性时，会从 person 的原型也就是 Person.prototype 中读取，正好原型中有该属性，所以：
+
+    // 手写new操作符
+    function newObj(Constructor, ...args) {
+      let obj = {}
+      obj.__proto__ = Constructor.prototype
+      let b = Constructor.apply(obj, args)
+      return typeof b === 'object' ? b : obj
+    }
+
+    // 继承重要的三种
+    // 第一种 原型链继承 会使constructor改变的 同时会让自己的原型对象上增添不必要的属性
+    function Student() { }
+    Student.prototype = new Person()
+
+    // 第二种 丢失了实例属性
+    // Object.create() // 浅复制
+    function Student1() { }
+    Student1.prototype = Object.create(Person.prototype)
+
+    // Object.create()的实现
+    function myCreate(obj) {
+      var F = function () { } // 借助一个空的构造函数
+      F.prototype = obj
+      return new F()
+    }
+
+    // 第三种 es6 extends 使用的方法
+    function Student2() {
+      // 1.继承属性
+      Person.call(this)
+    }
+    // 2.继承方法
+    Student2.prototype = Object.create(Person.prototype)
+    // 3.修正constructor的指向
+    Student2.prototype.constructor = Student2
+  </script>
+</body>
+
+</html>
