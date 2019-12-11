@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包</title>
+</head>
+
+<body>
+  <script>
+    function Bar(name) {
+      this.name = name
+    }
+    function makeFactor(name) {
+      var p = new Bar(name)
+      return function () {
+        return p
+      }
+    }
+    var p1 = makeFactor('哈哈')
+    var p2 = p1() // p2一直在引用p
+    p2 = null
+    // 引用计数 引用一次数量加一
+
+    // 怎么回收闭包中的变量？ 流行做法
+    function makeFactor(name) {
+      var p = new Bar(name)
+      return function () {
+        return {
+          create: p,
+          destry: function () {
+            p = null
+          }
+        }
+      }
+    }
+    var p1 = makeFactor('哈哈')
+    var p2 = p1()
+    console.log(p2.create)
+    p2.destry()
+  </script>
+</body>
+
+</html>
