@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jsonp</title>
+</head>
+<body>
+  <script>
+    // 前端定义回调方法
+    function cb(data) {
+      console.log(data)
+    }  
+  </script>
+  <!-- 请求放在回调方法之后 将前端的回调函数名放在请求中携带给后端 -->
+  <!-- script 1. 可以跨域请求 2. 会将返回的js立即执行 -->
+  <script src="/api/abc?callback=cb"></script>
+  <!-- /api/abc?callback=cb
+    callback=cb
+  -->
+  <!-- cb([{name: '123'}]) -->
+</body>
+</html>
